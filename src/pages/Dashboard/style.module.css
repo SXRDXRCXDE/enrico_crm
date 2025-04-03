@@ -1,0 +1,15 @@
+.container {
+    @apply w-full h-[1000px]  flex justify-start gap-x-3 p-5 ;
+}
+
+.col1 {
+    @apply flex flex-col items-start gap-y-4  ;
+}
+
+.col2 {
+    @apply flex flex-col items-start gap-y-4  ;
+}
+
+.col3 {
+    @apply w-full flex flex-col items-center gap-y-4  ;
+}

@@ -1,0 +1,26 @@
+/*manrope font*/
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&display=swap');
+
+.container {
+    @apply w-72 h-96 bg-[#514EF3] rounded-2xl p-5 flex flex-col items-end justify-between;
+}
+
+.topBar {
+    @apply w-full flex items-center justify-between ;
+}
+
+.title {
+    @apply text-white text-[18px];
+}
+
+.bottomBar {
+    @apply -translate-y-10 ;
+}
+
+.numberOfClients {
+    @apply text-[96px]  font-[600] leading-6 text-white relative  ;
+}
+
+.numberOfClients span {
+    font-family: Manrope;
+}

@@ -1,5 +1,32 @@
+/*inter font*/
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: #0a0a0a !important;
+  color: white !important;
+  -webkit-text-fill-color: white !important; /* Force white text */
+  -webkit-box-shadow: 0 0 0px 1000px #0a0a0a inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+
 .App {
+  font-family: Inter;
   text-align: center;
+}
+.content_body {
+  @apply w-full h-auto overflow-y-scroll  bg-[#F6FAFDE5]  ;
+}
+
+.content_body {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.content_body::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
 }
 
 .App-logo {

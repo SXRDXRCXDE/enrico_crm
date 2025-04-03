@@ -1,0 +1,41 @@
+/*Inter font*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/*Inria Serif font*/
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.container {
+    @apply w-full h-24  bg-[#F6FAFDE5] flex flex-row items-center justify-between px-8 border-b border-[#EAEEF4] ;
+}
+
+.leftBar {
+    @apply flex flex-row items-center ;
+}
+
+
+.mainLink {
+    font-family: Inria Serif;
+    @apply text-[32px] ;
+}
+
+.rightBar {
+    @apply flex flex-row items-center gap-x-8;
+}
+
+.addButton {
+    @apply w-auto h-auto px-5 py-3 rounded-full bg-[#514EF3] flex flex-row items-center justify-center text-white gap-x-2;
+}
+
+.addButton span {
+    font-family: Inter;
+}
+
+.profilePicture {
+    @apply  w-10 h-10  rounded-full overflow-hidden flex items-center justify-center ;
+}
+
+.profilePicture img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    @apply w-10 h-10 object-cover;
+}

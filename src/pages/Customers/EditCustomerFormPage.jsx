@@ -7,7 +7,7 @@ import TextArea from "antd/es/input/TextArea";
 import {useDispatch, useSelector} from "react-redux";
 import {setEditActive} from "../../store/reducers/editSlice";
 
-export default function EditFormPage({id}) {
+export default function EditCustomerPage({id}) {
     const [form] = Form.useForm();  // Step 1: Create form instance
     const [messageApi, contextHolder] = message.useMessage();
     const [avatar, setAvatar] = useState(null);
@@ -107,7 +107,9 @@ export default function EditFormPage({id}) {
         }
     };
 
-    console.log(selectedCustomer)
+    const handleBack = () => {
+        dispatch(setEditActive(false))
+    }
 
     return (
         <div className={style.container}>
@@ -181,8 +183,8 @@ export default function EditFormPage({id}) {
 
                 {/* Submit Button */}
                 <Form.Item>
+                    <Button className={'mr-10'} type="default" danger onClick={handleBack}>Back</Button>
                     <Button type="primary" htmlType="submit">Submit</Button>
-                    {/*<Button type="default" danger onClick={handleDelete}>Delete</Button>*/}
                 </Form.Item>
 
             </Form>

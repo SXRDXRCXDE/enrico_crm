@@ -1,0 +1,15 @@
+.imageLayer {
+    @apply  w-[98%] h-screen flex items-center justify-center bg-[#0a0a0a];
+}
+
+.imgContainer {
+    @apply  w-full h-full relative  ;
+}
+
+.activeSwitchLinks {
+    @apply bg-[#0a0a0a] w-full h-14 flex items-center justify-center cursor-pointer text-2xl text-center text-white duration-500 z-10 ;
+}
+
+.switchLinks {
+    @apply bg-[#0a0a0a] w-full h-14 flex items-center justify-center cursor-pointer text-center text-white/30 duration-500 z-10 ;
+}

@@ -1,0 +1,13 @@
+
+
+.container {
+    @apply w-72 h-44 flex flex-row items-center justify-between p-6  bg-[#FFFFFF] border border-[#EAEEF4] rounded-2xl shadow ;
+}
+
+.leftBar {
+    @apply flex flex-col items-start gap-y-2.5 ;
+}
+
+.iconHandler {
+    @apply w-24 h-24 rounded-full shadow flex items-center justify-center text-[40px] ;
+}

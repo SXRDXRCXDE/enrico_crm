@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="70ce1a9c-b327-4aaa-90d6-652a3f95a357" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/CashRegister/searchedProducts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AuthContext/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/AuthContext/AuthContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginPage/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPage/LoginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginPage/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPage/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProtectedRoute/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProtectedRoute/ProtectedRoute.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/brands.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/brands.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/categories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/colors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/colors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/customers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/customers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/material.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/material.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/seasons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/seasons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/sizes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/sizes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ToolBar/ToolBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ToolBar/ToolBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ToolBar/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ToolBar/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Brands/Brands.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Brands/Brands.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Brands/EditBrandFormPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Brands/EditBrandFormPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Brands/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Brands/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CashRegister/CashRegister.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CashRegister/CashRegister.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CashRegister/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CashRegister/ProductCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CashRegister/QuantityCounter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CashRegister/QuantityCounter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CashRegister/selectedProduct.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CashRegister/selectedProduct.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CashRegister/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CashRegister/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Categories/Categories.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Categories/Categories.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Categories/EditCategoriesForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Categories/EditCategoriesForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Categories/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Categories/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Colors/Colors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Colors/Colors.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Colors/EditColorsForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Colors/EditColorsForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Colors/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Colors/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Customers/Customers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Customers/Customers.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Customers/EditCustomerFormPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Customers/EditCustomerFormPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Customers/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Customers/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Customers/test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Customers/test.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Materials/EditMaterialsForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Materials/EditMaterialsForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Materials/Materials.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Materials/Materials.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Materials/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Materials/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Orders/EditOrderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Orders/EditOrderForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Orders/Orders.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Orders/Orders.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Orders/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Orders/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/EditProductForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/EditProductForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Products.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Products.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Seasons/EditSeasonsForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Seasons/EditSeasonsForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Seasons/Seasons.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Seasons/Seasons.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Seasons/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Seasons/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Sizes/EditSizeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Sizes/EditSizeForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Sizes/Sizes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Sizes/Sizes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Sizes/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Sizes/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Tasks/Tasks.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Tasks/Tasks.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Tasks/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Tasks/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/loadingSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/loadingSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/Card/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/Card/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/Card/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/CurrentClients/CurrentClients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/CurrentClients/CurrentClients.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/CurrentClients/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/CurrentClients/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/LastDeals/LastDeals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/LastDeals/LastDeals.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/LastDeals/check.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/LastDeals/check.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/LastDeals/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/LastDeals/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/TodoList/TodoList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/TodoList/TodoList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/TodoList/statement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/TodoList/statement.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/TodoList/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/TodoList/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/Workers/Workers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/Workers/Workers.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/Workers/checkCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/Workers/checkCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/Workers/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/Workers/style.module.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2uiSb3NcZrpU7ruAmJE2NBTWyVv" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70ce1a9c-b327-4aaa-90d6-652a3f95a357" name="Changes" comment="" />
+      <created>1742729971518</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742729971518</updated>
+      <workItem from="1742729973944" duration="2726000" />
+      <workItem from="1742896653904" duration="7811000" />
+      <workItem from="1742921022670" duration="8301000" />
+      <workItem from="1742973048279" duration="17850000" />
+      <workItem from="1743151849789" duration="20395000" />
+      <workItem from="1743221493668" duration="12388000" />
+      <workItem from="1743254227626" duration="195000" />
+      <workItem from="1743261753004" duration="3509000" />
+      <workItem from="1743291034502" duration="11407000" />
+      <workItem from="1743337049065" duration="5645000" />
+      <workItem from="1743353070924" duration="2363000" />
+      <workItem from="1743396617143" duration="32651000" />
+      <workItem from="1743508109801" duration="8430000" />
+      <workItem from="1743526534158" duration="1160000" />
+      <workItem from="1743671682980" duration="1444000" />
+      <workItem from="1743674620640" duration="10451000" />
+      <workItem from="1743686153220" duration="4000" />
+      <workItem from="1743686229527" duration="4445000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

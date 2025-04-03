@@ -1,0 +1,61 @@
+
+
+.container {
+    @apply w-full h-[405px] rounded-xl bg-[#FFFFFF] shadow py-3 font-[Inter] flex flex-col justify-between ;
+}
+
+.titleWrapper {
+    @apply w-full h-12 flex items-center justify-between px-6 ;
+}
+
+.title {
+    @apply text-[18px] font-bold  ;
+}
+
+.filter {
+    @apply text-[14px] text-[#514EF3] ;
+}
+
+.todoBody {
+    @apply w-full h-72 bg-[#F6FAFD] overflow-y-scroll border-b border-[#EAEEF4] px-6 ;
+}
+
+.todoBody {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.todoBody::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+.list {
+    @apply w-full h-auto ;
+}
+
+.statement {
+    @apply  w-full h-12 flex items-center justify-start gap-x-4 ;
+}
+
+.date {
+    @apply  w-24 line-clamp-1 text-start ;
+}
+
+.type {
+    @apply w-14 line-clamp-1 text-start ;
+}
+
+.name {
+    @apply w-auto line-clamp-1 text-start  ;
+}
+
+.enterTasks {
+    @apply w-full h-12 flex items-center justify-between px-6 mt-2 ;
+}
+
+.inputTask {
+    @apply w-full   ;
+}
+
+.addButton {
+    @apply w-20 h-12 flex items-center justify-center text-3xl text-[#514EF3] ;
+}

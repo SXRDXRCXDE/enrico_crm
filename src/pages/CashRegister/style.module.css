@@ -1,0 +1,101 @@
+.container {
+    @apply w-full h-screen flex items-start overflow-hidden  ;
+}
+
+.saleHistory {
+    @apply w-[450px] h-full  ;
+}
+
+.productsContainer {
+    @apply w-full h-full  flex flex-col  ;
+}
+
+.productsHeader {
+    @apply w-full h-48 border ;
+}
+
+.headerBar {
+    @apply w-full h-24 flex p-2 overflow-hidden border  ;
+}
+
+.searchBar {
+    @apply w-full h-16 rounded-full flex items-center justify-between p-1 bg-[#514EF3]  ;
+}
+
+.profileBar {
+    @apply h-full flex items-center ml-5 ;
+}
+
+.profileData {
+    @apply w-auto h-auto flex items-center gap-x-3 text-2xl font-semibold ;
+}
+
+.profilePicture {
+    @apply w-12 h-12 object-cover object-center rounded-full ;
+}
+
+.inputPlace {
+    @apply w-[230px] h-full ;
+}
+
+.selectBar{
+    @apply w-[130px] h-full  flex items-center rounded-full overflow-hidden relative ;
+}
+
+.SbarActive {
+    @apply w-1/2 h-full flex items-center justify-center text-5xl text-[#514EF3] z-10 duration-500 ;
+}
+
+.Sbar {
+    @apply w-1/2 h-full flex items-center justify-center text-5xl text-white z-10 duration-500 ;
+}
+
+.categoriesBarWrapper {
+    @apply w-full overflow-hidden;
+}
+
+.categoriesBar {
+    @apply w-full h-24 flex items-center p-2 gap-x-2 whitespace-nowrap;
+}
+
+.tabNavbar {
+    @apply w-auto h-full rounded-full bg-[#514EF3] ml-5 flex items-center relative ;
+}
+
+.tabLinkActive {
+    @apply w-44 text-xl text-white font-semibold duration-500 ;
+}
+
+.tabLink {
+    @apply w-44 text-xl text-[#BDBCFF] font-semibold duration-500 cursor-pointer ;
+}
+
+/*.categoriesBar {*/
+/*    -ms-overflow-style: none;  !* Internet Explorer 10+ *!*/
+/*    scrollbar-width: none;  !* Firefox *!*/
+/*}*/
+/*.categoriesBar::-webkit-scrollbar {*/
+/*    display: none;  !* Safari and Chrome *!*/
+/*}*/
+
+.categoryButton {
+    @apply min-w-[8rem] h-full rounded-xl bg-amber-600 flex items-center justify-center px-4 shrink-0;
+}
+
+.searchBody {
+    @apply w-full h-[650px] mt-3 flex flex-wrap content-start gap-2 p-2 rounded-3xl border-2 border-[#514EF3] overflow-y-scroll ;
+}
+
+.searchBody {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.searchBody::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+
+.searchedProductContainer {
+    @apply w-[131px] h-52 overflow-hidden relative ;
+}
+

@@ -1,0 +1,45 @@
+/* styles.module.css */
+
+/*.container {*/
+/*    @apply  ;*/
+/*}*/
+
+h2 {
+    @apply mb-4 text-gray-800;
+}
+
+.ant-table {
+    @apply bg-white rounded-lg;
+}
+
+.ant-btn-primary {
+    @apply bg-blue-600 border-blue-600 text-white;
+}
+
+/*.container {*/
+/*    @apply  bg-gray-100;*/
+/*}*/
+
+h2 {
+    @apply mb-4 text-gray-800;
+}
+
+.ant-table {
+    @apply bg-white rounded-lg;
+}
+
+.datePicker {
+    @apply w-full mb-2;
+}
+
+.inputArea {
+    @apply w-full mb-4;
+}
+
+.modalFooter {
+    @apply flex justify-between mt-4;
+}
+
+.modalFooter button {
+    @apply text-lg;
+}
