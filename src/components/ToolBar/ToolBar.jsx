@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {HiOutlineColorSwatch} from "react-icons/hi";
 import {GiMaterialsScience} from "react-icons/gi";
 import {WiDaySunny} from "react-icons/wi";
+import {GrUserSettings} from "react-icons/gr";
 
 
 
@@ -22,125 +23,84 @@ export default function ToolBar() {
     const location = useLocation();
 
     const dispatch = useDispatch();
-    const editActive = useSelector((state)=> state.edit.editActive);
 
 
     const Links = [
         {
             name: "Dashboard",
-            icon: <BiSolidDashboard />,
+            icon: <BiSolidDashboard size={40} />,
             link: "/dashboard"
         },
         {
             name: "Customers",
-            icon: <div style={{ transform: `scaleX(-1)` }}><IoPeople /></div>,
+            icon: <div style={{ transform: `scaleX(-1)` }}><IoPeople size={40} /></div>,
             link: "/customers"
         },
         {
-            name: "Tasks",
-            icon: <FaTasks />,
-            link: "/tasks"
-        },
-        {
-            name: "Notifications",
-            icon: <IoIosNotificationsOutline />,
-            link: "/notifications"
-        },
-        {
-            name: "Brands",
-            icon: <FaBuilding />,
-            link: "/brands"
-        },
-        {
-            name: "Colors",
-            icon: <HiOutlineColorSwatch />,
-            link: "/colors",
-        },
-        {
-            name: "Sizes",
-            icon: <FaRuler />,
-            link: "/sizes",
-        },
-        {
-            name: "Materials",
-            icon: <GiMaterialsScience />,
-            link: "/materials",
-        },
-        {
-            name: "Seasons",
-            icon: <WiDaySunny />,
-            link: "/seasons",
-        },
-        {
-            name: "Categories",
-            icon: <FaListAlt />,
-            link: "/categories",
-        },
-        {
             name: "Products",
-            icon: <FaBoxOpen />,
+            icon: <FaBoxOpen size={40} />,
             link: "/products",
         },
         {
             name: "Orders",
-            icon: <FaShoppingCart />,
+            icon: <FaShoppingCart size={40} />,
             link: "/orders",
         },
         {
+            name: "Tasks",
+            icon: <FaTasks size={40} />,
+            link: "/tasks"
+        },
+        {
             name: "Cash Register", // ✅ Added Cash Register
-            icon: <FaCashRegister />, // 🏦 Added icon
+            icon: <FaCashRegister size={40} />, // 🏦 Added icon
             link: "/cash-register",
-        }
+        },
+        {
+            name: "Product Setting", // ✅ Added Cash Register
+            icon: <GrUserSettings size={40} />, // 🏦 Added icon
+            link: "/product-setting",
+        },
+        {
+            name: "Notifications",
+            icon: <IoIosNotificationsOutline size={40} />,
+            link: "/notifications"
+        },
     ];
 
 
     useEffect(()=>{
         switch (location.pathname){
-            case '/customers':
-                setActive(1);
-                break;
             case '/dashboard':
                 setActive(0);
                 break;
-            case '/tasks':
-                setActive(2)
-                break;
-            case '/notifications':
-                setActive(3);
-                break;
-            case '/brands':
-                setActive(4);
-                break;
-            case '/colors':
-                setActive(5);
-                break;
-            case '/sizes':
-                setActive(6);
-                break;
-            case '/materials':
-                setActive(7);
-                break;
-            case '/seasons':
-                setActive(8);
-                break;
-            case '/categories':
-                setActive(9);
+            case '/customers':
+                setActive(1);
                 break;
             case '/products':
-                setActive(10);
+                setActive(2)
                 break;
             case '/orders':
-                setActive(11);
+                setActive(3);
+                break;
+            case '/tasks':
+                setActive(4);
                 break;
             case '/cash-register':
-                setActive(12);
+                setActive(5);
+                break;
+            case '/product-setting':
+                setActive(6);
+                break;
+            case '/notifications':
+                setActive(7);
                 break;
         }
     },[notification,location])
 
     return<>
 
-        <div className={ editActive? style.hiddenContainer : style.container}>
+        <div className={style.container}>
 
             <Link to={'/dashboard'}>
                 <div onClick={()=>setActive(-1)} className={style.logoBar}>
@@ -155,14 +115,14 @@ export default function ToolBar() {
                     Links.map((value, index)=> <Link to={value.link}>
                         <div className={isActive===index? style.activelinkStyle : style.linkStyle} onClick={()=> {
                             setActive(index)
-                            index===3 ? setNotification(-1) : setUseless(0)
+                            index===7 ? setNotification(-1) : setUseless(0)
                         }}>
                             {
                                 value.icon
                             }
                             {
                                 notification <0 ? `` :
-                                index===3 ?  <div  className={'rounded-full bg-[#514EF3] w-2 h-2 absolute top-[22px] right-[23px]'}></div> : ``
+                                index===7 ?  <div  className={'rounded-full bg-[#514EF3] w-2 h-2 absolute top-[22px] right-[23px]'}></div> : ``
                             }
                         </div>
                     </Link>)

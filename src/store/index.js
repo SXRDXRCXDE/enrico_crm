@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import editReducer from "./reducers/editSlice";
+import paymentReducer from "./reducers/paymentSlice";
 import loadingReducer from "./reducers/loadingSlice";
 
 const store = configureStore({
     reducer: {
-        edit: editReducer,
+        payment: paymentReducer,
         loading: loadingReducer,
     },
 });

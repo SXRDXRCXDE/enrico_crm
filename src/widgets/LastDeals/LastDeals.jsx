@@ -52,13 +52,13 @@ export default function LastDeals() {
 
             <div className={style.checkWrapper}>
 
-                {orders.map((value, index)=> <Check
-                    name={users[value.user_id]?.username}
-                    username={customers[value.customer_id]?.name}
-                    address={value?.status}
-                    total_amount={value?.total_amount}
-                    date={value?.created_at}
-                />)}
+                {/*{orders.map((value, index)=> <Check*/}
+                {/*    name={users[value.user_id]?.username}*/}
+                {/*    username={customers[value.customer_id]?.name}*/}
+                {/*    address={value?.status}*/}
+                {/*    total_amount={value?.total_amount}*/}
+                {/*    date={value?.created_at}*/}
+                {/*/>)}*/}
 
             </div>
 

@@ -1,14 +1,20 @@
 import axios from "axios";
 
-export const getSizes = async () => {
+export const getSizes = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get("/api/v1/sizes/");
+        const response = await axios.get("/api/v1/sizes/", {
+            params: {
+                page: page,  // Page number
+                limit: limit // Number of items per page
+            },
+        });
         return response.data;
     } catch (error) {
         console.error("Error fetching sizes:", error.response?.data || error);
         throw error;
     }
 };
+
 
 export const postSize = async (sizeData) => {
     try {

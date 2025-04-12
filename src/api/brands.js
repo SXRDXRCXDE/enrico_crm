@@ -1,14 +1,20 @@
 import axios from "axios";
 
-export const getBrands = async () => {
+export const getBrands = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get("/api/v1/brands/");
+        const response = await axios.get("/api/v1/brands/", {
+            params: {
+                page: page, // Page number
+                limit: limit, // Number of items per page
+            },
+        });
         return response.data; // Returning the fetched data
     } catch (error) {
         console.error("Error fetching brands:", error);
-        throw error; // Throwing error for handling in calling function
+        throw error; // Throwing error for handling in the calling function
     }
 };
+
 
 export const getBrandById = async (id) => {
     try {

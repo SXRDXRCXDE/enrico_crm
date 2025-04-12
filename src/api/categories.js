@@ -2,13 +2,19 @@ import axios from "axios";
 
 export const getCategories = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get(`/api/v1/categories/?page=${page}&limit=${limit}`);
+        const response = await axios.get("/api/v1/categories/", {
+            params: {
+                page: page,   // Current page number
+                limit: limit, // Items per page
+            },
+        });
         return response.data;
     } catch (error) {
         console.error("Error fetching categories:", error);
         throw error;
     }
 };
+
 
 export const getCategoryById = async (id) => {
     try {

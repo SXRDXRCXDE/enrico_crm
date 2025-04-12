@@ -1,14 +1,20 @@
 import axios from "axios";
 
-export const getMaterials = async () => {
+export const getMaterials = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get("/api/v1/materials/");
+        const response = await axios.get("/api/v1/materials/", {
+            params: {
+                page: page,   // Page number
+                limit: limit, // Number of items per page
+            },
+        });
         return response.data;
     } catch (error) {
         console.error("Error fetching materials:", error);
         throw error;
     }
 };
+
 
 export const getMaterialById = async (id) => {
     try {

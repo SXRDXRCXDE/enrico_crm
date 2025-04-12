@@ -1,61 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
 .container {
-    @apply p-5 bg-gray-50 rounded-lg;
+    font-family: Inter,sans-serif;
+    @apply w-full h-screen overflow-hidden  ;
 }
 
-.header {
-    @apply flex justify-between items-center mb-4;
+.contentHeader {
+    @apply w-full h-24 border-b flex items-center justify-between px-6 ;
 }
 
-.header h2 {
-    @apply text-lg font-bold;
+.addButton {
+    @apply w-44 h-14 rounded-full bg-[#514EF3] flex items-center justify-center text-center text-white text-lg font-semibold cursor-pointer ;
 }
 
-.actions {
-    @apply flex items-center space-x-2;
+.topOfTable {
+    @apply w-full h-20 flex items-center justify-between px-6 ;
 }
 
-.avatar {
-    @apply w-10 h-10 ;
+.tableWrapper{
+    @apply w-full h-full px-6 ;
 }
-
-.subHeader {
-    @apply flex justify-between items-center mb-4;
-}
-
-.subHeader p {
-    @apply text-base font-medium;
-}
-
-.table {
-    @apply rounded-lg;
-}
-
-.containerEdit {
-    @apply w-full mx-auto my-5 p-5 bg-white rounded-lg shadow-md;
-}
-
-.form {
-    @apply flex flex-col gap-4;
-}
-
-.avatarContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.avatar {
-    width: 80px;
-    height: 80px;
-}
-
-.row {
-    @apply flex gap-4;
-}
-
-.input {
-    @apply flex-1;
-}
-
-

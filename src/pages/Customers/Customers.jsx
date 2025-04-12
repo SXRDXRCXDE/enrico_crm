@@ -1,72 +1,51 @@
 import React, {useEffect, useState} from "react";
-import {Table, Button, Avatar, Dropdown, Menu, message, Modal} from "antd";
-import {PlusOutlined, DownOutlined, EditOutlined, DeleteOutlined} from "@ant-design/icons";
 import style from "./style.module.css";
-import Header from "../../components/Header/Header";
-import EditFormPage from "./EditCustomerFormPage";
-import {deleteCustomerById, getCustomers} from "../../api/customers";
-import {useDispatch, useSelector} from "react-redux";
-import {setEditActive} from "../../store/reducers/editSlice";
+import {FaAngleDown} from "react-icons/fa";
+import {Button, Input, message, Modal, Table} from "antd";
+import {deleteCustomerById, getCustomers, postCustomer, updateCustomer} from "../../api/customers";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import {MdCancel} from "react-icons/md";
 
 
 export default function Customers() {
 
-    const dispatch = useDispatch();
-    const editActive = useSelector((state)=>state.edit.editActive);
-
-    const [messageApi, contextHolder] = message.useMessage();
-
-    const [modal, contextHolderModal] = Modal.useModal(); // Initialize modal
-
-    // const [editActive,setEdit] = useState(false);
-
     const [loading,setLoading] = useState(false);
+    const [isModalOpen,setModalOpen] = useState(false);
+    const [isEditModalOpen,setEditModalOpen] = useState(false);
+    const [currentPage,setCurrentPage] = useState(1);
+    const [customersData,setCustomersData] = useState([]);
 
-    const [data, setData] = useState([]);
+    const [customersQuantity,setCustomersQuantity] = useState(0);
 
-    const sortMenu = (
-        <Menu
-            onClick={(e) => {
-                let sortedData;
-                if (e.key === "date") {
-                    sortedData = [...data]; // Assume data has a date field for real sorting
-                } else if (e.key === "az") {
-                    sortedData = [...data].sort((a, b) => a.name.localeCompare(b.name));
-                } else if (e.key === "za") {
-                    sortedData = [...data].sort((a, b) => b.name.localeCompare(a.name));
-                }
-                setData(sortedData);
-            }}
-        >
-            <Menu.Item key="date">Sort by Date</Menu.Item>
-            <Menu.Item key="az">Sort A to Z</Menu.Item>
-            <Menu.Item key="za">Sort Z to A</Menu.Item>
-        </Menu>
-    );
+    const [messageApi,contextHolder] = message.useMessage();
 
-    const [editingCustomer, setEditingCustomer] = useState(null);
-    const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+    const [editForm, setEditForm] = useState({});
+    const [formData,setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        extra_info: ''
+    });
 
-
-    const columns = [
+    const CustomerColumns = [
         {
-            title: "Avatar",
-            dataIndex: "avatar",
-            key: "avatar",
-            render: (avatar) => <Avatar src={avatar} />,
+            title: "ID",
+            dataIndex: "id",
+            key: "id",
         },
         {
-            title: "Name Surname",
+            title: "Name",
             dataIndex: "name",
             key: "name",
         },
-        // {
-        //     title: "Products Quantity",
-        //     dataIndex: "products",
-        //     key: "products",
-        // },
         {
-            title: "Phone Number",
+            title: "Email",
+            dataIndex: "email",
+            key: "email",
+        },
+        {
+            title: "Phone",
             dataIndex: "phone",
             key: "phone",
         },
@@ -75,124 +54,291 @@ export default function Customers() {
             dataIndex: "address",
             key: "address",
         },
-        // {
-        //     title: "Cost Sales",
-        //     dataIndex: "cost",
-        //     key: "cost",
-        // },
+        {
+            title: "Extra Info",
+            dataIndex: "extra_info",
+            key: "extra_info",
+        },
         {
             title: "Actions",
             key: "actions",
             render: (_, record) => (
                 <>
                     <Button
-                        onClick={() => handleEdit(record)}
+                        onClick={() => handleEdit(record)} // Edit button logic
                         icon={<EditOutlined />}
-                        style={{ marginRight: 8 }} // Add spacing
+                        style={{ marginRight: 8 ,fontSize:33,padding:`30px` }} // Add spacing
                     />
                     <Button
                         onClick={() => handleDelete(record.id)}
                         icon={<DeleteOutlined />}
+                        style={{ marginRight: 8 ,fontSize:33,padding:`30px` }}
                         danger
                     />
                 </>
             ),
         }
-
     ];
 
     const handleDelete = async (id) => {
-        modal.confirm({
-            title: "Are you sure?",
-            content: "This action cannot be undone.",
-            okText: "Yes, Delete",
-            okType: "danger",
-            cancelText: "Cancel",
-            onOk: async () => {
-                try {
-                    await deleteCustomerById(id); // Replace with actual API call
-                    messageApi.success(" Customer deleted successfully!");
-                } catch (error) {
-                    messageApi.error(" 🔥 Failed to delete customer.");
-                }
-            },
-        });
-    };
+        setLoading(true);
+        try {
+            // Perform the delete operation based on the active tab
+            deleteCustomerById(id)
 
+            messageApi.success("Muvaffaqiyatli o'chirildi!");
+            setCurrentPage(1);
+
+            // Refresh the data
+            fetchCustomers({ current: 1, pageSize: 10 });
+        } catch (err) {
+            console.error(err);
+            messageApi.error("O'chirishda xatolik yuz berdi!");
+        }
+        finally {
+            setLoading(false);
+        }
+    };
 
     const handleEdit = (record) => {
-        console.log("Editing row:", record);
-        setEditingCustomer(record.id);
-        dispatch(setEditActive(true))
-        // // Example: Open modal with pre-filled form data
-        // setEditingCustomer(record); // Save record in state
-        // setIsEditModalVisible(true); // Show edit modal
+        setEditForm(record);
+        setEditModalOpen(true);
     };
+
+
+    const handleEditChange = (e) => {
+        const { name, value } = e.target;
+        setEditForm((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleEditOk = async () => {
+        setLoading(true);
+        try {
+            await updateCustomer(editForm.id, editForm); // Call the updateCustomer API
+
+            messageApi.success("Mijoz muvaffaqiyatli tahrirlandi!");
+            setEditModalOpen(false);
+            setCurrentPage(1); // Optional: reset to first page
+            fetchCustomers(1);
+        } catch (err) {
+            console.error("Error updating customer:", err);
+            messageApi.error("Xatolik yuz berdi!");
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+
+
+
+
+    const EditModal = (
+        <Modal
+            open={isEditModalOpen}
+            onCancel={() => setEditModalOpen(false)}
+            width="50%"
+            title={<div className="text-4xl font-semibold text-[#514EF3]">Mijozni tahrirlash</div>}
+            closeIcon={<MdCancel className="text-[45px] hover:text-red-700" />}
+            footer={[
+                <button
+                    key="cancel"
+                    onClick={() => setEditModalOpen(false)}
+                    className="px-4 py-2 text-xl font-semibold rounded-full duration-500 mr-6 border-2 border-black/30 hover:shadow text-gray-700 hover:bg-gray-300"
+                >
+                    Bekor qilish
+                </button>,
+                <button
+                    key="submit"
+                    onClick={handleEditOk}
+                    className="px-4 py-2 text-xl font-semibold rounded-full duration-500 bg-[#514EF3] text-white hover:bg-[#514EF3]/90"
+                >
+                    Saqlash
+                </button>,
+            ]}
+        >
+            {["name", "email", "phone", "address", "extra_info"].map((field, idx) => (
+                <div key={idx} className="mb-6 mt-6 text-2xl font-semibold">
+                    <label>{field.replace("_", " ").toUpperCase()}</label>
+                    <Input
+                        className="h-12 mt-3 text-2xl"
+                        name={field}
+                        placeholder={`Enter ${field.replace("_", " ")}`}
+                        onChange={handleEditChange}
+                        value={editForm[field] || ""}
+                    />
+                </div>
+            ))}
+        </Modal>
+    );
+
+
+
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleOk = async () => {
+        setLoading(true);
+        try {
+            await postCustomer(formData);
+            messageApi.success("Mijoz muvaffaqiyatli qo'shildi!");
+            setModalOpen(false);
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                address: '',
+                extra_info: ''
+            });
+            fetchCustomers(); // if you have this function to reload data
+        } catch (error) {
+            console.error("Xatolik:", error);
+            messageApi.error("Xatolik yuz berdi!");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+    const AddModal = (
+        <Modal
+            open={isModalOpen}
+            onCancel={() => setModalOpen(false)}
+            width="50%"
+            title={<div className="text-4xl font-semibold text-[#514EF3]">Yangi mijoz qo'shish</div>}
+            closeIcon={<MdCancel className="text-[45px] hover:text-red-700" />}
+            footer={[
+                <button
+                    key="cancel"
+                    onClick={() => setModalOpen(false)}
+                    className="px-4 py-2 text-xl font-semibold rounded-full duration-500 mr-6 border-2 border-black/30 hover:shadow text-gray-700 hover:bg-gray-300"
+                >
+                    Bekor qilish
+                </button>,
+                <button
+                    key="submit"
+                    onClick={handleOk}
+                    className="px-4 py-2 text-xl font-semibold rounded-full duration-500 bg-[#514EF3] text-white hover:bg-[#514EF3]/90"
+                >
+                    Saqlash
+                </button>,
+            ]}
+        >
+            {[
+                { label: 'Ismi', name: 'name', type: 'input', placeholder: 'Ismingizni kiriting' },
+                { label: 'Email', name: 'email', type: 'input', placeholder: 'Email kiriting' },
+                { label: 'Telefon', name: 'phone', type: 'input', placeholder: 'Telefon raqamingiz' },
+                { label: 'Manzil', name: 'address', type: 'input', placeholder: 'Manzil kiriting' },
+                { label: 'Qo‘shimcha ma’lumot', name: 'extra_info', type: 'textarea', placeholder: 'Qo‘shimcha ma’lumot' },
+            ].map((field, idx) => (
+                <div key={idx} className="mb-6 mt-6 text-2xl font-semibold">
+                    <label>{field.label}</label>
+                    {field.type === 'input' ? (
+                        <Input
+                            className="h-12 mt-3 text-2xl"
+                            name={field.name}
+                            placeholder={field.placeholder}
+                            onChange={handleChange}
+                        />
+                    ) : (
+                        <Input.TextArea
+                            className="h-28 mt-3 text-2xl"
+                            name={field.name}
+                            placeholder={field.placeholder}
+                            onChange={handleChange}
+                        />
+                    )}
+                </div>
+            ))}
+        </Modal>
+    );
+
 
 
 
     useEffect(()=>{
-        fetchCustomers()
+
+        fetchCustomers();
+
     },[])
 
-    const fetchCustomers = async () => {
+
+
+    const fetchCustomers = async (pagination) => {
         setLoading(true);
         try {
-            const data = await getCustomers();
-            setData(data.data)
-        }catch (error){
-            console.log(error)
-        }finally {
-            setLoading(false)
+            const customers = await getCustomers(pagination);
+            // const allCustomers = await getCustomers(1,1000);
+            setCustomersData(customers.data);
+            // setCustomersQuantity(allCustomers.data);
+        } catch (error) {
+            console.error("Error fetching customers:", error);
+        }
+        finally {
+            setLoading(false);
         }
     };
 
-    // loading===false? fetchCustomers() : console.log('');
 
-
-    return (
-
-        <div>
+    return(
+        <>
             {contextHolder}
-            {contextHolderModal}
+            {AddModal}
+            {EditModal}
+            <div className={style.container}>
 
-            <div className={'w-full'}>
-                <Header title={'Mijozlar haqida ma’lumotlar'}/>
-            </div>
+                <div className={style.contentHeader}>
 
-            {
-                editActive?
-                    <div className={'p-5'}>
-                        <EditFormPage id={editingCustomer}/>
-                    </div>
+                    <span className={'text-3xl font-semibold'}>Mijozlar haqida ma'lumotlar</span>
 
-                    :
-                    <div className={style.container}>
-                    <div className={style.subHeader}>
-                        <p>Common: {data?.length} customers</p>
-                        <Dropdown overlay={sortMenu}>
-                            <Button>
-                                Sort <DownOutlined />
-                            </Button>
-                        </Dropdown>
-                    </div>
+                    <div onClick={()=>setModalOpen(true)} className={style.addButton}>Yangi qo'shish + </div>
+
+                </div>
+
+                <div className={style.topOfTable}>
+
+                    <span className={'text-xl font-semibold'}>Umumiy : {customersQuantity?.length} mijoz</span>
+
+
+                    <span className={'py-2 px-4 bg-white rounded-full border text-xl font-semibold flex items-center gap-2'}>Sana bo'yicha saralash <FaAngleDown />
+
+                    </span>
+
+                </div>
+
+                <div className={style.tableWrapper}>
+
                     <Table
-                        columns={columns}
-                        dataSource={data}
-                        className={style.table}
+                        loading={loading}
+                        className={'custom-table'}
+                        columns={CustomerColumns}
+                        dataSource={customersData}
+                        sticky scroll={{y:630}}
                         pagination={{
+                            current: currentPage,
                             pageSize: 10,       // Number of items per page
                             total: 5 * 10,      // Total items (10 pages * 10 items)
                             showSizeChanger: false, // Disable page size change
                         }}
+                        onChange={(pagination) => {
+                            setCurrentPage(pagination.current); // Update current page
+                            fetchCustomers(pagination.current);
+                        }}
                     />
 
-
                 </div>
-            }
 
-        </div>
+            </div>
+        </>
+    )
 
 
-    );
 }

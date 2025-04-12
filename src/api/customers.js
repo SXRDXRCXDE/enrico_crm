@@ -54,21 +54,26 @@ export const getCustomer = async (customerId) => {
     }
 };
 
-export const getCustomers = async (customerId) => {
+export const getCustomers = async (page = 1, limit = 10) => {
     try {
         const response = await axios.get(`/api/v1/customers/`, {
+            params: {
+                page: page,
+                limit: limit,
+            },
             headers: {
                 "Content-Type": "application/json",
             },
         });
 
-        console.log("Customer retrieved successfully:", response.data);
+        console.log("Customers retrieved successfully:", response.data);
         return response.data;
     } catch (error) {
-        console.error("Error retrieving customer:", error.response?.data || error.message);
+        console.error("Error retrieving customers:", error.response?.data || error.message);
         throw error;
     }
 };
+
 
 export const getCustomerById = async (id) => {
     try {

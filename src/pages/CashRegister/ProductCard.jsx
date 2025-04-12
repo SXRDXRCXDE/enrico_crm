@@ -33,8 +33,8 @@ export default function ProductCard({ id, name, price, quantity }) {
             // Remove the product if it's already selected
             selectedProducts = selectedProducts.filter((product) => product.id !== id);
         } else {
-            // Add the product to localStorage
-            selectedProducts.push({ id, name, price });
+            // Add the product to localStorage with quantity
+            selectedProducts.push({ id, name, price, quantity: 1 });
         }
 
         // Update localStorage
@@ -46,6 +46,7 @@ export default function ProductCard({ id, name, price, quantity }) {
         // Toggle active state
         setActive(!isActive);
     };
+
 
 
     return (

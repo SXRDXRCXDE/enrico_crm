@@ -29,9 +29,9 @@
 
 
 .activelinkStyle {
-    @apply h-16 w-16 text-[25px] flex flex-col items-center justify-center rounded-full bg-[#514EF3] text-white  border border-[#EAEEF4] relative ;
+    @apply h-20 w-20 text-[25px] flex flex-col items-center justify-center rounded-full bg-[#514EF3] text-white  border border-[#EAEEF4] relative ;
 }
 
 .linkStyle {
-    @apply h-16 w-16 text-[25px] flex flex-col items-center justify-center rounded-full bg-[#FFFFFF] hover:bg-[#514EF3] hover:text-white duration-500 border border-[#EAEEF4] relative ;
+    @apply h-20 w-20 text-[25px] flex flex-col items-center justify-center rounded-full bg-[#FFFFFF] hover:bg-[#514EF3] hover:text-white duration-500 border border-[#EAEEF4] relative ;
 }

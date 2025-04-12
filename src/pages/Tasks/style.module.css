@@ -1,45 +1,29 @@
-/* styles.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-/*.container {*/
-/*    @apply  ;*/
-/*}*/
 
-h2 {
-    @apply mb-4 text-gray-800;
+.container {
+    font-family: Inter,sans-serif;
+    @apply w-full h-screen overflow-hidden  ;
 }
 
-.ant-table {
-    @apply bg-white rounded-lg;
+.contentHeader {
+    @apply w-full h-24 border-b flex items-center justify-between px-6 ;
 }
 
-.ant-btn-primary {
-    @apply bg-blue-600 border-blue-600 text-white;
+.addButton {
+    @apply w-44 h-14 rounded-full bg-[#514EF3] flex items-center justify-center text-center text-white text-lg font-semibold cursor-pointer ;
 }
 
-/*.container {*/
-/*    @apply  bg-gray-100;*/
-/*}*/
-
-h2 {
-    @apply mb-4 text-gray-800;
+.topOfTable {
+    @apply w-full h-20 flex items-center justify-between px-6 ;
 }
 
-.ant-table {
-    @apply bg-white rounded-lg;
+.tableWrapper{
+    @apply w-full h-full px-6 ;
 }
 
-.datePicker {
-    @apply w-full mb-2;
-}
 
-.inputArea {
-    @apply w-full mb-4;
-}
-
-.modalFooter {
-    @apply flex justify-between mt-4;
-}
-
-.modalFooter button {
-    @apply text-lg;
+.line-through {
+    text-decoration: line-through;
+    background-color: #f9f9f9;
 }

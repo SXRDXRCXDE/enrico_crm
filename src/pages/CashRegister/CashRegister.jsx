@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import style from "./style.module.css";
 import {Input} from "antd";
+import { Modal, InputNumber } from "antd";
 import {MdCancel} from "react-icons/md";
 import {IoIosBarcode} from "react-icons/io";
 import {TbAbc} from "react-icons/tb";
@@ -9,9 +10,34 @@ import SelectedProduct from "./selectedProduct";
 import {CiSearch} from "react-icons/ci";
 import SearchedProducts from "./searchedProducts";
 import {FaPlus} from "react-icons/fa";
+import {setLoading} from "../../store/reducers/loadingSlice";
+import {getCustomers} from "../../api/customers";
+import CheckProducts from "../ProductSetting/CheckProducts";
+
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setPaymentActive } from "../../store/reducers/paymentSlice"; // adjust path if needed
+
 
 
 export default function CashRegister() {
+
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [discount, setDiscount] = useState(0);
+    const [fee, setFee] = useState(0);
+
+    const [isDiscountModalOpen, setDiscountModalOpen] = useState(false);
+    const [isFeeModalOpen, setFeeModalOpen] = useState(false);
+
+    const [tempDiscount, setTempDiscount] = useState(0);
+    const [tempFee, setTempFee] = useState(0);
+
+
+
+    const [categoriesData,setCategoriesData] = useState([]);
+    const [productsData,setProductsData] = useState([]);
+
+
 
     const [searchType,setType] = useState(0);
 
@@ -19,6 +45,10 @@ export default function CashRegister() {
     const [barcodeValue,setBarcodeValue] = useState("");
     const [dateTime, setDateTime] = useState("");
     const [activeTab,setTab] = useState(0);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         const updateDateTime = () => {
@@ -38,6 +68,7 @@ export default function CashRegister() {
         const interval = setInterval(updateDateTime, 60000); // Update every minute
 
         return () => clearInterval(interval); // Cleanup on unmount
+
     }, []);
 
     // const handleClear = () => {
@@ -56,80 +87,132 @@ export default function CashRegister() {
             id: '1',
             name: 'Nike',
             price: '400',
-            quantity: 15
         },
         {
             id: '2',
             name: 'Nike',
             price: '400',
-            quantity: 15
         },
         {
             id: '3',
             name: 'Nike',
             price: '400',
-            quantity: 15
         },
         {
             id: '4',
             name: 'Nike',
             price: '400',
-            quantity: 15
         },
         {
             id: '5',
             name: 'Nike',
             price: '400',
-            quantity: 15
         },
         {
             id: '6',
             name: 'Nike',
             price: '400',
-            quantity: 15
         },
         {
             id: '7',
             name: 'Adidas',
             price: '350',
-            quantity: 5
         },
         {
             id: '8',
             name: 'W&F',
             price: '270',
-            quantity: 19
         },
         {
             id: '9',
             name: 'Acer',
             price: '660',
-            quantity: 21
         },
         {
             id: '10',
             name: 'Puma',
             price: '550',
-            quantity: 35
         },
         {
             id: '11',
             name: 'Pepsi',
             price: '440',
-            quantity: 25
         },
         {
             id: '12',
             name: 'Click',
             price: '890',
-            quantity: 4
         },
     ]
+
+
+    const loadProducts = () => {
+        const stored = JSON.parse(localStorage.getItem("selectedProducts") || "[]");
+        setProductsData(stored);
+    };
+
+    useEffect(() => {
+        loadProducts();
+
+        const handleStorageChange = () => {
+            loadProducts();
+        };
+
+        window.addEventListener("storage", handleStorageChange);
+
+        return () => {
+            window.removeEventListener("storage", handleStorageChange);
+        };
+    }, []);
+
+    useEffect(() => {
+        const sum = productsData.reduce((acc, product) => {
+            const qty = product.quantity ?? 1;
+            return acc + Number(product.price) * qty;
+        }, 0);
+        setTotalPrice(sum);
+
+        if (sum === 0) {
+            setDiscount(0);
+            setFee(0);
+        }
+    }, [productsData]);
+
+
+    const showDiscountModal = () => {
+        setTempDiscount(discount); // Set initial value
+        setDiscountModalOpen(true);
+    };
+
+    const handleDiscountOk = () => {
+        setDiscount(tempDiscount);
+        setDiscountModalOpen(false);
+    };
+
+    const handleDiscountCancel = () => {
+        setDiscountModalOpen(false);
+    };
+
+    const showFeeModal = () => {
+        setTempFee(fee); // Set initial value
+        setFeeModalOpen(true);
+    };
+
+    const handleFeeOk = () => {
+        setFee(tempFee);
+        setFeeModalOpen(false);
+    };
+
+    const handleFeeCancel = () => {
+        setFeeModalOpen(false);
+    };
+
+    const finalTotal = totalPrice > 0 ? (totalPrice - discount + fee) : 0;
+
 
     return(
 
             <div className={style.container}>
-
 
                 <div className={style.productsContainer}>
 
@@ -146,7 +229,6 @@ export default function CashRegister() {
 
                                     <span>Kassa</span>
 
-                                    {/*<img className={style.profilePicture} src={'https://mn2s.com/wp-content/uploads/2024/08/Jason-Statham.jpg'}/>*/}
 
                                 </div>
 
@@ -159,21 +241,22 @@ export default function CashRegister() {
                         {/*There will be categories bar*/}
                         <div className={style.categoriesBarWrapper}>
                             <div className={style.categoriesBar}>
-                                {/*{Categories.map((value, index) => (*/}
-                                {/*    <div key={index} className={style.categoryButton}>*/}
-                                {/*        {value}*/}
-                                {/*    </div>*/}
-                                {/*))}*/}
 
-                                <div className={style.tabNavbar}>
-
-                                    {Categories.map((value, index)=>  <div
-                                        onClick={()=>setTab(index)}
-                                        className={ index===activeTab? style.tabLinkActive : style.tabLink}>
-                                        {value}
-                                    </div>)}
-
+                                <div className={style.tabNavbarWrapper}>
+                                    <div className={style.tabNavbar}>
+                                        {Categories.map((value, index) => (
+                                            <div
+                                                key={index}
+                                                onClick={() => setTab(index)}
+                                                className={index === activeTab ? style.tabLinkActive : style.tabLink}
+                                            >
+                                                {value}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
+
+
                             </div>
                         </div>
 
@@ -196,14 +279,7 @@ export default function CashRegister() {
 
                         {/*Check's data*/}
                         <div className={'w-full h-[104px] border-b bg-[#EEF6FBE5] flex items-center justify-between px-5 py-3'}>
-                            {/*<span className={'text-xl font-bold'}># 3</span>*/}
-                            {/*<div className={'w-auto h-12 flex items-center justify-around px-3 text-2xl rounded border border-blue-400'}>*/}
-                            {/*    <span>❌</span>*/}
-                            {/*</div>*/}
-                            {/*<div className={'flex flex-col text-end items-end'}>*/}
-                            {/*    <span className={'text-lg font-[500] text-black/60'}>{dateTime}</span>*/}
-                            {/*    <span className={'text-xs font-[500] text-black/60'}>№ 654664654446</span>*/}
-                            {/*</div>*/}
+
                         </div>
 
                         <div className={'w-full h-full p-2 overflow-hidden relative border-l  '}>
@@ -253,13 +329,130 @@ export default function CashRegister() {
                                 </div>
                             </div>
 
-                            <div className={style.searchBody}>
-                                {Products.map((value, index)=> <SearchedProducts id={value.id} name={value.name} price={value.price} quantity={value.quantity}/>)}
+                            <div className={'relative'}>
+                                <div className={style.searchBody}>
+                                    {JSON.parse(localStorage.getItem("selectedProducts") || "[]").map((product) => (
+                                        <CheckProducts
+                                            key={product.id}
+                                            id={product.id}
+                                            name={product.name}
+                                            price={product.price}
+                                            quantity={product.quantity}
+                                        />
+                                    ))}
 
+                                </div>
+
+                                {/*This shows selected products check like a total sum and discount, fees and etc */}
+                                <div className={'w-[95%] h-52 bg-white absolute bottom-3 left-0 right-0 m-auto shadow-xl border rounded-3xl'}>
+
+                                    <div className={'w-full h-full flex flex-col justify-between text-start items-start px-5 py-4'}>
+
+
+                                        <div className={'w-full flex flex-col'}>
+
+                                            <div className={'w-full flex items-end gap-2'}>
+
+                                                <span className={'text-xl font-semibold'}>Total</span>
+                                                <div className={'w-full border'}></div>
+                                                <span className={'whitespace-nowrap font-semibold'}>{totalPrice.toLocaleString()} sum</span>
+
+                                            </div>
+
+                                            <div className={'w-full flex items-end gap-2'}>
+                                                <span className={'text-xl font-semibold'}>Discount</span>
+                                                <div className={'w-full border'}></div>
+                                                <span className={'whitespace-nowrap font-semibold'}>{discount.toLocaleString()} sum</span>
+                                            </div>
+                                            <div className={'w-full flex items-end gap-2'}>
+                                                <span className={'text-xl font-semibold'}>Fee</span>
+                                                <div className={'w-full border'}></div>
+                                                <span className={'whitespace-nowrap font-semibold'}>{fee.toLocaleString()} sum</span>
+                                            </div>
+
+                                            <div className={'w-full flex items-end gap-2'}>
+                                                <span className={'text-xl font-semibold'}>Final</span>
+                                                <div className={'w-full border'}></div>
+                                                <span className={'whitespace-nowrap font-bold text-lg'}>{finalTotal.toLocaleString()} sum</span>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                        <div className={'w-full flex items-center justify-start gap-4'}>
+
+                                            <div onClick={showDiscountModal} className={'h-10 border-2 border-black text-center font-semibold flex items-center px-3 rounded-xl cursor-pointer'}>
+                                                - Discount
+                                            </div>
+                                            <div onClick={showFeeModal} className={'h-10 border-2 border-black text-center font-semibold flex items-center px-3 rounded-xl cursor-pointer'}>
+                                                + Fee
+                                            </div>
+
+
+
+                                            <Modal
+                                                title="Enter Fee"
+                                                open={isFeeModalOpen}
+                                                onOk={handleFeeOk}
+                                                onCancel={handleFeeCancel}
+                                                okText="Apply"
+                                                cancelText="Cancel"
+                                            >
+                                                <InputNumber
+                                                    min={0}
+                                                    value={tempFee}
+                                                    onChange={value => setTempFee(value)}
+                                                    className="w-full"
+                                                    addonAfter="sum"
+                                                />
+                                            </Modal>
+
+
+                                            <Modal
+                                                title="Enter Discount"
+                                                open={isDiscountModalOpen}
+                                                onOk={handleDiscountOk}
+                                                onCancel={handleDiscountCancel}
+                                                okText="Apply"
+                                                cancelText="Cancel"
+                                            >
+                                                <InputNumber
+                                                    min={0}
+                                                    value={tempDiscount}
+                                                    onChange={value => setTempDiscount(value)}
+                                                    className="w-full"
+                                                    addonAfter="sum"
+                                                />
+                                            </Modal>
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
                             </div>
 
+
                             <div className={'w-full h-auto mt-3 flex flex-col items-end justify-between '}>
-                                <div className={'p-3 rounded-xl flex items-center gap-1 text-center text-xl text-white from bg-[#35AE25] to bg-[#1C8D0D]'}>Mahsulot qo'shish <FaPlus /> </div>
+                                <div
+                                    className={`p-3 rounded-xl flex items-center gap-1 text-center text-xl text-white select-none 
+                                        ${finalTotal < 1 ? 'bg-gray-400 cursor-not-allowed' : 'from bg-[#35AE25] to bg-[#1C8D0D] cursor-pointer'}
+                                    `}
+                                    onClick={() => {
+                                        if (finalTotal >= 1) {
+                                            dispatch(setPaymentActive(true));
+                                            navigate("/payments");
+                                        }
+                                    }}
+                                >
+                                    Hozir to'lash
+                                </div>
+
+
                             </div>
 
                         </div>

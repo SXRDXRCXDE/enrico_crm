@@ -1,8 +1,13 @@
 import axios from "axios";
 
-export const getOrders = async () => {
+export const getOrders = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get("/api/v1/orders/");
+        const response = await axios.get("/api/v1/orders/", {
+            params: {
+                page: page,   // Page number
+                limit: limit, // Number of items per page
+            },
+        });
         console.log("All Orders:", response.data);
         return response.data;
     } catch (error) {

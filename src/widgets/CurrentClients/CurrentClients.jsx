@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.css";
 
-export default function CurrentClients() {
+export default function CurrentClients({quantity}) {
 
     return<>
         <div className={style.container}>
@@ -16,7 +16,7 @@ export default function CurrentClients() {
 
             <div className={style.bottomBar}>
 
-                <span className={style.numberOfClients}>12 ta
+                <span className={style.numberOfClients}>{quantity} ta
                     <span className={'text-[18px] absolute m-auto -bottom-3 right-0 '}>Mijozlar</span>
                 </span>
 

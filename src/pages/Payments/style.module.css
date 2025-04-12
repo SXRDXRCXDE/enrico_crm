@@ -1,0 +1,29 @@
+
+
+.container {
+    @apply w-full h-screen bg-[#514EF3] ;
+}
+
+.leftContainer {
+    @apply w-[650px] h-full border-2 shadow-2xl shadow-white/30 rounded-xl flex flex-col text-start items-start px-10 pt-8 pb-6 duration-500 relative ;
+}
+
+.leftContainer2 {
+    @apply w-[650px] h-full bg-green-500 border-2 border-transparent shadow-2xl shadow-white/30 rounded-xl flex flex-col text-start items-start px-10 pt-8 pb-6 duration-500 relative ;
+}
+
+.rightContainer {
+    @apply w-1/2 h-full border-2 flex flex-col text-start items-start p-10 ;
+}
+
+.confirmButton {
+    @apply w-auto px-12 h-20 cursor-pointer active:translate-y-2 rounded-xl mt-7 translate-y-1 self-center text-center flex items-center justify-center gap-2 text-3xl font-semibold  duration-500 text-white bg-green-500 active:bg-green-500/50 select-none hover:shadow  ;
+}
+
+.confirmButton2 {
+    @apply absolute -left-96 top-12 w-auto px-12 h-20 cursor-pointer active:translate-y-2 rounded-xl mt-7 translate-y-1 self-center text-center flex items-center justify-center gap-2 text-3xl font-semibold  duration-500 text-white bg-green-500 active:bg-green-500/50 select-none hover:shadow  ;
+}
+
+.backButton {
+    @apply w-auto px-12 h-20 cursor-pointer active:translate-y-2 rounded-xl mt-16 translate-y-1 self-center text-center flex items-center justify-center gap-2 text-3xl font-semibold  duration-500 text-green-500 bg-white active:bg-green-500/50 select-none hover:shadow  ;
+}

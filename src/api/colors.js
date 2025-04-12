@@ -1,8 +1,13 @@
 import axios from "axios";
 
-export const getColors = async () => {
+export const getColors = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get("/api/v1/colors/");
+        const response = await axios.get("/api/v1/colors/", {
+            params: {
+                page: page,   // Page number
+                limit: limit, // Number of items per page
+            },
+        });
         return response.data; // Returning the data from the API
     } catch (error) {
         console.error("Error fetching colors:", error);
