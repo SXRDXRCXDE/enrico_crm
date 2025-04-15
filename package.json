@@ -2,7 +2,6 @@
   "name": "clothing",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://api.enrico.uz",
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
     "@reduxjs/toolkit": "^2.6.1",

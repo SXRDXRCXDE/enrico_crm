@@ -4,9 +4,12 @@ import {Link} from "react-router-dom";
 import {LuMoveLeft} from "react-icons/lu";
 import {RiVerifiedBadgeFill} from "react-icons/ri";
 import {FaCheck} from "react-icons/fa";
+import {useDispatch} from "react-redux";
+import {setPaymentActive} from "../../store/reducers/paymentSlice";
 
 export default function Payments() {
 
+    const dispatch = useDispatch();
     const [cardActive,setCardActive] = useState(false);
     const [isConfirm,setConfirm] = useState(false);
 
@@ -91,6 +94,7 @@ export default function Payments() {
 
                             <Link to={'/'}>
                                 <div onClick={()=>{
+                                    dispatch(setPaymentActive(false));
                                     setConfirm(false);
                                 }} className={style.backButton}>Asosiy Menyu</div>
                             </Link>

@@ -1,19 +1,23 @@
 import axios from "axios";
 
+// Axios instance for customers API
+const axiosInstance = axios.create({
+    baseURL: "https://api.enrico.uz/api/v1/customers",
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
+
+// Create a customer
 export const postCustomer = async (customerData) => {
     try {
-        const response = await axios.post("/api/v1/customers/", {
+        const response = await axiosInstance.post("/", {
             name: customerData.name,
             email: customerData.email,
             phone: customerData.phone,
             address: customerData.address,
-            extra_info: customerData.extra_info || {}, // Default to empty object if not provided
-        }, {
-            headers: {
-                "Content-Type": "application/json",
-            },
+            extra_info: customerData.extra_info || {},
         });
-
         console.log("Customer added successfully:", response.data);
         return response.data;
     } catch (error) {
@@ -22,31 +26,22 @@ export const postCustomer = async (customerData) => {
     }
 };
 
+// Update customer by ID
 export const updateCustomer = async (id, updatedData) => {
     try {
-        const response = await axios.put(`/api/v1/customers/${id}`, updatedData, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
+        const response = await axiosInstance.put(`/${id}`, updatedData);
         console.log("Customer updated successfully:", response.data);
-        return response.data; // Return updated data if needed
+        return response.data;
     } catch (error) {
-        console.error("Error updating customer:", error.response ? error.response.data : error.message);
-        throw error; // Re-throw the error for handling in calling components
+        console.error("Error updating customer:", error.response?.data || error.message);
+        throw error;
     }
 };
 
+// Get customer by ID
 export const getCustomer = async (customerId) => {
     try {
-        const response = await axios.get(`/api/v1/customers/${customerId}`, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        // console.log("Customer retrieved successfully:", response.data);
+        const response = await axiosInstance.get(`/${customerId}`);
         return response.data;
     } catch (error) {
         console.error("Error retrieving customer:", error.response?.data || error.message);
@@ -54,18 +49,12 @@ export const getCustomer = async (customerId) => {
     }
 };
 
+// Get paginated customers
 export const getCustomers = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get(`/api/v1/customers/`, {
-            params: {
-                page: page,
-                limit: limit,
-            },
-            headers: {
-                "Content-Type": "application/json",
-            },
+        const response = await axiosInstance.get("/", {
+            params: { page, limit },
         });
-
         console.log("Customers retrieved successfully:", response.data);
         return response.data;
     } catch (error) {
@@ -74,31 +63,13 @@ export const getCustomers = async (page = 1, limit = 10) => {
     }
 };
 
+// Alias for getting customer by ID (optional if `getCustomer` is used)
+export const getCustomerById = getCustomer;
 
-export const getCustomerById = async (id) => {
-    try {
-        const response = await axios.get(`/api/v1/customers/${id}`, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        console.log("Customer retrieved successfully:", response.data);
-        return response.data;
-    } catch (error) {
-        console.error("Error retrieving customer:", error.response?.data || error.message);
-        throw error;
-    }
-};
-
+// Delete customer by ID
 export const deleteCustomerById = async (id) => {
     try {
-        const response = await axios.delete(`/api/v1/customers/${id}`, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
+        const response = await axiosInstance.delete(`/${id}`);
         console.log("Customer deleted successfully:", response.data);
         return response.data;
     } catch (error) {
@@ -107,15 +78,10 @@ export const deleteCustomerById = async (id) => {
     }
 };
 
-
+// Get customer debits
 export const getCustomerDebits = async (id) => {
     try {
-        const response = await axios.get(`/api/v1/customers/${id}/debits`, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
+        const response = await axiosInstance.get(`/${id}/debits`);
         console.log("Customer debits retrieved successfully:", response.data);
         return response.data;
     } catch (error) {
@@ -124,14 +90,10 @@ export const getCustomerDebits = async (id) => {
     }
 };
 
+// Get all customers with debit
 export const getDebitedCustomers = async () => {
     try {
-        const response = await axios.get("/api/v1/customers/debited_customers", {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
+        const response = await axiosInstance.get("/debited_customers");
         console.log("Debited customers retrieved successfully:", response.data);
         return response.data;
     } catch (error) {

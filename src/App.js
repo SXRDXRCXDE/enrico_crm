@@ -46,7 +46,6 @@ function App() {
                             )
                     }
 
-
                     {/* Контент */}
                     <div className="w-full h-full overflow-hidden flex flex-col items-start">
                         <div className="content_body">

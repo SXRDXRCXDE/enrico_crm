@@ -1,66 +1,74 @@
 import axios from "axios";
 
+// Create an Axios instance with the base URL
+const axiosInstance = axios.create({
+    baseURL: "https://api.enrico.uz/api/v1/brands",
+});
+
+// Get paginated list of brands
 export const getBrands = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get("/api/v1/brands/", {
+        const response = await axiosInstance.get("/", {
             params: {
-                page: page, // Page number
-                limit: limit, // Number of items per page
+                page,
+                limit,
             },
         });
-        return response.data; // Returning the fetched data
+        return response.data;
     } catch (error) {
         console.error("Error fetching brands:", error);
-        throw error; // Throwing error for handling in the calling function
+        throw error;
     }
 };
 
-
+// Get brand by ID
 export const getBrandById = async (id) => {
     try {
-        const response = await axios.get(`/api/v1/brands/${id}`);
-        return response.data; // Returning the fetched brand data
+        const response = await axiosInstance.get(`/${id}`);
+        return response.data;
     } catch (error) {
         console.error(`Error fetching brand with ID ${id}:`, error);
-        throw error; // Throwing error for handling in calling function
+        throw error;
     }
 };
 
+// Create a new brand
 export const createBrand = async (brandData) => {
     try {
-        const response = await axios.post("/api/v1/brands/", brandData, {
+        const response = await axiosInstance.post("/", brandData, {
             headers: {
                 "Content-Type": "application/json",
             },
         });
-        return response.data; // Returning the created brand data
+        return response.data;
     } catch (error) {
         console.error("Error creating brand:", error);
-        throw error; // Throw error for handling in calling function
+        throw error;
     }
 };
 
+// Update an existing brand
 export const updateBrand = async (id, brandData) => {
     try {
-        const response = await axios.put(`/api/v1/brands/${id}`, brandData, {
+        const response = await axiosInstance.put(`/${id}`, brandData, {
             headers: {
                 "Content-Type": "application/json",
             },
         });
-        return response.data; // Returning the updated brand data
+        return response.data;
     } catch (error) {
         console.error(`Error updating brand with ID ${id}:`, error);
-        throw error; // Throw error for handling in calling function
+        throw error;
     }
 };
 
+// Delete a brand
 export const deleteBrand = async (id) => {
     try {
-        const response = await axios.delete(`/api/v1/brands/${id}`);
-        return response.data; // Returning the response data (if any)
+        const response = await axiosInstance.delete(`/${id}`);
+        return response.data;
     } catch (error) {
         console.error(`Error deleting brand with ID ${id}:`, error);
-        throw error; // Throw error for handling in calling function
+        throw error;
     }
 };
-

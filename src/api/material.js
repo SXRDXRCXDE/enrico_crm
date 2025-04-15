@@ -1,12 +1,18 @@
 import axios from "axios";
 
+// Axios instance for materials
+const axiosInstance = axios.create({
+    baseURL: "https://api.enrico.uz/api/v1/materials",
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
+
+// Get paginated list of materials
 export const getMaterials = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get("/api/v1/materials/", {
-            params: {
-                page: page,   // Page number
-                limit: limit, // Number of items per page
-            },
+        const response = await axiosInstance.get("/", {
+            params: { page, limit },
         });
         return response.data;
     } catch (error) {
@@ -15,10 +21,10 @@ export const getMaterials = async (page = 1, limit = 10) => {
     }
 };
 
-
+// Get material by ID
 export const getMaterialById = async (id) => {
     try {
-        const response = await axios.get(`/api/v1/materials/${id}`);
+        const response = await axiosInstance.get(`/${id}`);
         return response.data;
     } catch (error) {
         console.error("Error fetching material by ID:", error);
@@ -26,9 +32,10 @@ export const getMaterialById = async (id) => {
     }
 };
 
+// Create a new material
 export const createMaterial = async (materialData) => {
     try {
-        const response = await axios.post("/api/v1/materials/", materialData);
+        const response = await axiosInstance.post("/", materialData);
         return response.data;
     } catch (error) {
         console.error("Error creating material:", error);
@@ -36,9 +43,10 @@ export const createMaterial = async (materialData) => {
     }
 };
 
+// Update material by ID
 export const updateMaterial = async (id, materialData) => {
     try {
-        const response = await axios.put(`/api/v1/materials/${id}`, materialData);
+        const response = await axiosInstance.put(`/${id}`, materialData);
         return response.data;
     } catch (error) {
         console.error("Error updating material:", error);
@@ -46,9 +54,10 @@ export const updateMaterial = async (id, materialData) => {
     }
 };
 
+// Delete material by ID
 export const deleteMaterial = async (id) => {
     try {
-        const response = await axios.delete(`/api/v1/materials/${id}`);
+        const response = await axiosInstance.delete(`/${id}`);
         return response.data;
     } catch (error) {
         console.error("Error deleting material:", error);
