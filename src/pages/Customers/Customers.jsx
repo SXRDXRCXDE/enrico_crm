@@ -277,7 +277,8 @@ export default function Customers() {
         try {
             const customers = await getCustomers(pagination);
             // const allCustomers = await getCustomers(1,1000);
-            setCustomersData(customers.data);
+            setCustomersData(customers?.data);
+            console.log(customers)
             // setCustomersQuantity(allCustomers.data);
         } catch (error) {
             console.error("Error fetching customers:", error);
@@ -305,7 +306,7 @@ export default function Customers() {
 
                 <div className={style.topOfTable}>
 
-                    <span className={'text-xl font-semibold'}>Umumiy : {customersQuantity?.length} mijoz</span>
+                    <span className={'text-xl font-semibold'}>Umumiy : {customersData?.total} mijoz</span>
 
 
                     <span className={'py-2 px-4 bg-white rounded-full border text-xl font-semibold flex items-center gap-2'}>Sana bo'yicha saralash <FaAngleDown />
@@ -320,7 +321,7 @@ export default function Customers() {
                         loading={loading}
                         className={'custom-table'}
                         columns={CustomerColumns}
-                        dataSource={customersData}
+                        dataSource={customersData.items}
                         sticky scroll={{y:630}}
                         pagination={{
                             current: currentPage,

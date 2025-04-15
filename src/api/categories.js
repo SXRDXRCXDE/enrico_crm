@@ -1,15 +1,12 @@
 import axios from "axios";
 
-// Create an Axios instance with base URL for categories
-const axiosInstance = axios.create({
-    baseURL: "https://api.enrico.uz/api/v1/categories",
-});
-
-// Get paginated list of categories
 export const getCategories = async (page = 1, limit = 10) => {
     try {
-        const response = await axiosInstance.get("/", {
-            params: { page, limit },
+        const response = await axios.get("/api/v1/categories/", {
+            params: {
+                page: page,   // Current page number
+                limit: limit, // Items per page
+            },
         });
         return response.data;
     } catch (error) {
@@ -18,10 +15,10 @@ export const getCategories = async (page = 1, limit = 10) => {
     }
 };
 
-// Get category by ID
+
 export const getCategoryById = async (id) => {
     try {
-        const response = await axiosInstance.get(`/${id}`);
+        const response = await axios.get(`/api/v1/categories/${id}`);
         return response.data;
     } catch (error) {
         console.error("Error fetching category by ID:", error);
@@ -29,10 +26,9 @@ export const getCategoryById = async (id) => {
     }
 };
 
-// Create a new category
 export const createCategory = async (categoryData) => {
     try {
-        const response = await axiosInstance.post("/", categoryData);
+        const response = await axios.post("/api/v1/categories/", categoryData);
         return response.data;
     } catch (error) {
         console.error("Error creating category:", error);
@@ -40,10 +36,9 @@ export const createCategory = async (categoryData) => {
     }
 };
 
-// Update an existing category
 export const updateCategory = async (id, categoryData) => {
     try {
-        const response = await axiosInstance.put(`/${id}`, categoryData);
+        const response = await axios.put(`/api/v1/categories/${id}`, categoryData);
         return response.data;
     } catch (error) {
         console.error("Error updating category:", error);
@@ -51,10 +46,9 @@ export const updateCategory = async (id, categoryData) => {
     }
 };
 
-// Delete a category
 export const deleteCategory = async (id) => {
     try {
-        const response = await axiosInstance.delete(`/${id}`);
+        const response = await axios.delete(`/api/v1/categories/${id}`);
         return response.data;
     } catch (error) {
         console.error("Error deleting category:", error);

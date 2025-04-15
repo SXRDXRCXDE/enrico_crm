@@ -467,9 +467,9 @@ export default function Orders() {
             const customers = await getCustomers(1,100);
             const products = await getProducts(1,100);
             setOrdersData(orders.data); // make sure you have a state for ordersData
-            setCustomersData(customers.data);
+            setCustomersData(customers.data.items);
             setUsersData(users.data);
-            setProductsData(products.data);
+            setProductsData(products.data.items);
         } catch (error) {
             console.error("Error fetching orders:", error);
         } finally {
@@ -497,7 +497,7 @@ export default function Orders() {
 
                 <div className={style.topOfTable}>
 
-                    <span className={'text-xl font-semibold'}>Umumiy : {ordersQuantity?.length} buyurtma</span>
+                    <span className={'text-xl font-semibold'}>Umumiy : {ordersData?.total} buyurtma</span>
 
 
                     <span className={'py-2 px-4 bg-white rounded-full border text-xl font-semibold flex items-center gap-2'}>Sana bo'yicha saralash <FaAngleDown />
@@ -512,7 +512,7 @@ export default function Orders() {
                         loading={loading}
                         className={'custom-table'}
                         columns={OrderColumns}
-                        dataSource={ordersData}
+                        dataSource={ordersData.items}
                         sticky scroll={{y:590}}
                         pagination={{
                             current: currentPage,

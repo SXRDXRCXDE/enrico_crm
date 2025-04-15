@@ -346,7 +346,7 @@ export default function ProductSetting() {
         setLoading(true);
         try {
             const brands = await getBrands(pagination);
-            setBrandsData(brands.data);
+            setBrandsData(brands.data.items);
         } catch (error) {
             console.error("Error fetching brands:", error);
         }
@@ -359,7 +359,7 @@ export default function ProductSetting() {
         setLoading(true);
         try {
             const sizes = await getSizes(pagination);
-            setSizesData(sizes.data);
+            setSizesData(sizes.data.items);
         } catch (error) {
             console.error("Error fetching sizes:", error);
         }
@@ -372,7 +372,7 @@ export default function ProductSetting() {
         setLoading(true);
         try {
             const colors = await getColors(pagination);
-            setColorsData(colors.data);
+            setColorsData(colors.data.items);
         } catch (error) {
             console.error("Error fetching colors:", error);
         }
@@ -385,7 +385,7 @@ export default function ProductSetting() {
         setLoading(true);
         try {
             const materials = await getMaterials(pagination);
-            setMaterialsData(materials.data);
+            setMaterialsData(materials.data.items);
         } catch (error) {
             console.error("Error fetching materials:", error);
         }
@@ -398,7 +398,7 @@ export default function ProductSetting() {
         setLoading(true);
         try {
             const categories = await getCategories(pagination);
-            setCategoriesData(categories.data);
+            setCategoriesData(categories.data.items);
         } catch (error) {
             console.error("Error fetching categories:", error);
         }
@@ -411,7 +411,7 @@ export default function ProductSetting() {
         setLoading(true);
         try {
             const seasons = await getSeasons(pagination);
-            setSeasonsData(seasons.data);
+            setSeasonsData(seasons.data.items);
         } catch (error) {
             console.error("Error fetching seasons:", error);
         }

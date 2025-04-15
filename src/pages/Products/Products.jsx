@@ -406,8 +406,8 @@ export default function Products() {
             // const allCustomers = await getCustomers(1,1000);
             console.log(brands)
             setProductsData(products.data);
-            setBrandsData(brands.data);
-            setMaterialsData(materials.data);
+            setBrandsData(brands.data.items);
+            setMaterialsData(materials.data.items);
             // setCustomersQuantity(allCustomers.data);
         } catch (error) {
             console.error("Error fetching products:", error);
@@ -435,7 +435,7 @@ export default function Products() {
 
                 <div className={style.topOfTable}>
 
-                    <span className={'text-xl font-semibold'}>Umumiy : {productsQuantity?.length} maxsulot</span>
+                    <span className={'text-xl font-semibold'}>Umumiy : {productsData?.total} maxsulot</span>
 
 
                     <span className={'py-2 px-4 bg-white rounded-full border text-xl font-semibold flex items-center gap-2'}>Sana bo'yicha saralash <FaAngleDown />
@@ -450,7 +450,7 @@ export default function Products() {
                         loading={loading}
                         className={'custom-table'}
                         columns={ProductColumns}
-                        dataSource={productsData}
+                        dataSource={productsData?.items}
                         sticky scroll={{y:580}}
                         pagination={{
                             current: currentPage,

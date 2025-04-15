@@ -1,35 +1,30 @@
 import axios from "axios";
 
-// Set the base URL for all axios requests
-const axiosInstance = axios.create({
-    baseURL: "https://api.enrico.uz/api/v1/auth",
-});
+const API_URL = "/api/v1/auth/login";
 
-// Login API
 export const loginUser = async (username, password) => {
     try {
-        const response = await axiosInstance.post("/login", {
+        const response = await axios.post(API_URL, {
             username,
-            password,
+            password
         });
-        return response.data;
+        return response.data; // Возвращаем данные ответа
     } catch (error) {
         console.error("Login error:", error);
-        throw error;
+        throw error; // Пробрасываем ошибку для обработки в компоненте
     }
 };
 
-// Register API
 export const registerUser = async (username, password) => {
     try {
-        const response = await axiosInstance.post("/register", {
+        const response = await axios.post(API_URL, {
             username,
             password,
             role: "user",
         });
-        return response.data;
+        return response.data; // Возвращаем данные ответа
     } catch (error) {
         console.error("Registration error:", error);
-        throw error;
+        throw error; // Пробрасываем ошибку для обработки в компоненте
     }
 };
