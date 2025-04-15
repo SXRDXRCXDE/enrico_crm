@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70ce1a9c-b327-4aaa-90d6-652a3f95a357" name="Changes" comment="neww">
+    <list default="true" id="70ce1a9c-b327-4aaa-90d6-652a3f95a357" name="Changes" comment="newww">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/brands.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/brands.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/categories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/colors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/colors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/customers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/customers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/material.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/material.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/orders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/seasons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/seasons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/sizes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/sizes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Customers/Customers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Customers/Customers.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Orders/Orders.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Orders/Orders.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProductSetting/ProductSetting.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProductSetting/ProductSetting.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Products.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Products.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +81,8 @@
       <workItem from="1744261148406" duration="19812000" />
       <workItem from="1744453599774" duration="10102000" />
       <workItem from="1744545461442" duration="593000" />
-      <workItem from="1744713765158" duration="3999000" />
+      <workItem from="1744713765158" duration="4856000" />
+      <workItem from="1744720081335" duration="909000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1743692186756</created>
@@ -124,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1744716896377</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="newww">
+      <created>1744719545934</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744719545934</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +140,7 @@
     <MESSAGE value="1" />
     <MESSAGE value="new" />
     <MESSAGE value="neww" />
-    <option name="LAST_COMMIT_MESSAGE" value="neww" />
+    <MESSAGE value="newww" />
+    <option name="LAST_COMMIT_MESSAGE" value="newww" />
   </component>
 </project>
