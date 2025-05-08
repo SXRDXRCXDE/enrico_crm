@@ -1,19 +1,20 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from "react";
 
-// Создаём контекст
 const AuthContext = createContext();
 
-// Провайдер аутентификации
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // Состояние без localStorage
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const login = () => {
-        setIsAuthenticated(true);
-    };
+    useEffect(() => {
+        // Check for authentication cookie or token
+        const accessToken = document.cookie.split('; ').find(row => row.startsWith('access_token='));
+        if (accessToken) {
+            setIsAuthenticated(true);
+        }
+    }, []);
 
-    const logout = () => {
-        setIsAuthenticated(false);
-    };
+    const login = () => setIsAuthenticated(true);
+    const logout = () => setIsAuthenticated(false);
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
@@ -22,7 +23,4 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// Хук для использования контекста
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

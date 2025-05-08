@@ -15,7 +15,7 @@
 }
 
 .checkWrapper {
-    @apply w-full h-[650px] overflow-y-scroll ;
+    @apply w-full h-full overflow-y-scroll ;
 }
 
 .checkWrapper {

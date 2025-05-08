@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const apiUrl = process.env.REACT_APP_URL; // Получите базовый URL из .env
+const apiUrl = process.env.REACT_APP_URL; // Get the base URL from .env
 
-const API_URL = `${apiUrl}/api/v1/auth/login`;
+const API_URL = `/api/v1/auth/login`;
 
 export const loginUser = async (username, password) => {
     try {
@@ -10,10 +10,17 @@ export const loginUser = async (username, password) => {
             username,
             password
         });
-        return response.data; // Возвращаем данные ответа
+
+        // Store tokens as cookies
+        if (response.data.access && response.data.refresh) {
+            document.cookie = `access_token=${response.data.access}; path=/;`;
+            document.cookie = `refresh_token=${response.data.refresh}; path=/;`;
+        }
+
+        return response.data; // Return the response data (tokens)
     } catch (error) {
         console.error("Login error:", error);
-        throw error; // Пробрасываем ошибку для обработки в компоненте
+        throw error; // Rethrow the error to be handled in the component
     }
 };
 
@@ -24,9 +31,16 @@ export const registerUser = async (username, password) => {
             password,
             role: "user",
         });
-        return response.data; // Возвращаем данные ответа
+
+        // Store tokens as cookies after registration
+        if (response.data.access && response.data.refresh) {
+            document.cookie = `access_token=${response.data.access}; path=/;`;
+            document.cookie = `refresh_token=${response.data.refresh}; path=/;`;
+        }
+
+        return response.data; // Return the response data (tokens)
     } catch (error) {
         console.error("Registration error:", error);
-        throw error; // Пробрасываем ошибку для обработки в компоненте
+        throw error; // Rethrow the error to be handled in the component
     }
 };

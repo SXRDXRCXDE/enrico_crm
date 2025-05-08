@@ -32,14 +32,14 @@ export default function ToolBar() {
             link: "/dashboard"
         },
         {
+            name: "Inventory",
+            icon: <FaBoxOpen size={40} />,
+            link: "/inventory",
+        },
+        {
             name: "Customers",
             icon: <div style={{ transform: `scaleX(-1)` }}><IoPeople size={40} /></div>,
             link: "/customers"
-        },
-        {
-            name: "Products",
-            icon: <FaBoxOpen size={40} />,
-            link: "/products",
         },
         {
             name: "Orders",
@@ -74,11 +74,11 @@ export default function ToolBar() {
             case '/dashboard':
                 setActive(0);
                 break;
-            case '/customers':
-                setActive(1);
+            case '/inventory':
+                setActive(1)
                 break;
-            case '/products':
-                setActive(2)
+            case '/customers':
+                setActive(2);
                 break;
             case '/orders':
                 setActive(3);

@@ -5,16 +5,19 @@ import Card from "../../widgets/Card/Card";
 import {IoBriefcase, IoPeople} from "react-icons/io5";
 import LastDeals from "../../widgets/LastDeals/LastDeals";
 import Workers from "../../widgets/Workers/Workers";
-import TodoList from "../../widgets/TodoList/TodoList";
-import Header from "../../components/Header/Header";
+import CashHistory from "../../widgets/CashHistory/CashHistory";
 import {getCustomers} from "../../api/customers";
 import {getOrders} from "../../api/orders";
+import {BiPurchaseTagAlt} from "react-icons/bi";
+import {FaCartArrowDown} from "react-icons/fa";
+import {getProducts} from "../../api/products";
 
 export default function Dashboard() {
 
     const [loading,setLoading] = useState(false);
     const [customersData,setCustomersData] = useState([]);
     const [ordersData,setOrdersData] = useState([]);
+    const [productsData,setProductsData] = useState([]);
 
     const Cards = [
         {
@@ -40,10 +43,12 @@ export default function Dashboard() {
     const fetchDatas = async () => {
         setLoading(true);
         try {
-            const customers = await getCustomers(1,1000);
-            const orders = await getOrders(1,1000);
+            const customers = await getCustomers(1,10);
+            const orders = await getOrders(1,10);
+            const products = await getProducts(1,10);
             setCustomersData(customers.data);
-            setOrdersData(orders.data);
+            setOrdersData(orders?.data?.total);
+            setProductsData(products?.data?.total);
         } catch (error) {
             console.log("Error fetching data's" + error);
         } finally {
@@ -63,12 +68,10 @@ export default function Dashboard() {
                 <div className={'w-full flex h-full gap-x-3 p-5'}>
 
                     <div className={style.col1}>
-                        <CurrentClients quantity={customersData?.length}/>
+                        <CurrentClients quantity={customersData?.total}/>
 
-
-                        {
-                            Cards.map((value, index)=> <Card title={value.title} count={value.count} icon={value.icon} color={value.color} iconColor={value.iconColor} />)
-                        }
+                        <Card  count={ordersData} title={'Buyurtmalar'} color={'green'} iconColor={'white'} icon={<BiPurchaseTagAlt size={60} />} />
+                        <Card  count={productsData} title={'Mahsulotlar'} color={'gray'} iconColor={'white'} icon={<FaCartArrowDown size={55} />} />
 
                     </div>
 
@@ -86,7 +89,7 @@ export default function Dashboard() {
                         <Workers/>
 
                         <div className={'w-full '}>
-                            <TodoList/>
+                            <CashHistory/>
                         </div>
 
                     </div>

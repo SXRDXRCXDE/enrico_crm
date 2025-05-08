@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import style from "./style.module.css";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {LuMoveLeft} from "react-icons/lu";
 import {RiVerifiedBadgeFill} from "react-icons/ri";
 import {FaCheck} from "react-icons/fa";
@@ -13,10 +13,14 @@ export default function Payments() {
     const [cardActive,setCardActive] = useState(false);
     const [isConfirm,setConfirm] = useState(false);
 
-    const PaymentTypes = [
-        "",
-        "",
-    ]
+    const location = useLocation();
+    const finalTotal = location.state?.finalTotal || 0;
+
+
+    function handleBack() {
+        dispatch(setPaymentActive(false));
+        setConfirm(false);
+    }
 
     return(
         <>
@@ -61,7 +65,7 @@ export default function Payments() {
                             <div className={'w-full h-auto bg-white rounded-xl mt-8 flex flex-col items-start  px-8 pt-4 pb-2'}>
 
                                 <span className={'font-semibold text-lg'}>Siz to'lashinggiz kerak</span>
-                                <span className={'font-bold text-5xl mt-8'}>755 000 so'm</span>
+                                <span className={'font-bold text-5xl mt-8'}>{finalTotal.toLocaleString()} so'm</span>
                                 <span className={'font-bold flex items-center gap-2 text-xl mt-8'}>
                                 <RiVerifiedBadgeFill color={'#35AE25'} size={25} />
                                 To'lov & Invoice
@@ -75,9 +79,28 @@ export default function Payments() {
 
                             </div>
 
-                            <div onClick={()=>{
-                                setConfirm(true);
-                            }} className={style.confirmButton}>Tasdiqlash</div>
+                            <div
+                                onClick={() => {
+                                    // Save buyed products
+                                    const selected = JSON.parse(localStorage.getItem("selectedProducts") || "[]");
+
+                                    // Get existing buyed products
+                                    const history = JSON.parse(localStorage.getItem("buyedProducts") || "[]");
+
+                                    // Save new combined history
+                                    localStorage.setItem("buyedProducts", JSON.stringify([...history, ...selected]));
+
+                                    // Clear current selected
+                                    localStorage.removeItem("selectedProducts");
+
+                                    // Continue with confirmation flow
+                                    setConfirm(true);
+                                }}
+                                className={style.confirmButton}
+                            >
+                                Tasdiqlash
+                            </div>
+
 
                         </div>
 
@@ -89,14 +112,11 @@ export default function Payments() {
 
                             </div>
 
-                            <span className={'text-6xl font-bold mt-16 text-white'}>755 000 so'm</span>
+                            <span className={'text-6xl font-bold mt-16 text-white'}>{finalTotal.toLocaleString()} so'm</span>
 
 
-                            <Link to={'/'}>
-                                <div onClick={()=>{
-                                    dispatch(setPaymentActive(false));
-                                    setConfirm(false);
-                                }} className={style.backButton}>Asosiy Menyu</div>
+                            <Link to={'/dashboard'}>
+                                <div onClick={handleBack} className={style.backButton}>Asosiy Menyu</div>
                             </Link>
 
 

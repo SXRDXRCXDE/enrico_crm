@@ -29,11 +29,11 @@ export default function Customers() {
     });
 
     const CustomerColumns = [
-        {
-            title: "ID",
-            dataIndex: "id",
-            key: "id",
-        },
+        // {
+        //     title: "ID",
+        //     dataIndex: "id",
+        //     key: "id",
+        // },
         {
             title: "Name",
             dataIndex: "name",
@@ -54,11 +54,11 @@ export default function Customers() {
             dataIndex: "address",
             key: "address",
         },
-        {
-            title: "Extra Info",
-            dataIndex: "extra_info",
-            key: "extra_info",
-        },
+        // {
+        //     title: "Extra Info",
+        //     dataIndex: "extra_info",
+        //     key: "extra_info",
+        // },
         {
             title: "Actions",
             key: "actions",
@@ -198,6 +198,7 @@ export default function Customers() {
                 address: '',
                 extra_info: ''
             });
+            setCurrentPage(1);
             fetchCustomers(); // if you have this function to reload data
         } catch (error) {
             console.error("Xatolik:", error);
@@ -247,6 +248,7 @@ export default function Customers() {
                             name={field.name}
                             placeholder={field.placeholder}
                             onChange={handleChange}
+                            value={formData[field.name]} // <-- Add this line
                         />
                     ) : (
                         <Input.TextArea
@@ -254,6 +256,7 @@ export default function Customers() {
                             name={field.name}
                             placeholder={field.placeholder}
                             onChange={handleChange}
+                            value={formData[field.name]} // <-- Add this line
                         />
                     )}
                 </div>
@@ -309,9 +312,7 @@ export default function Customers() {
                     <span className={'text-xl font-semibold'}>Umumiy : {customersData?.total} mijoz</span>
 
 
-                    <span className={'py-2 px-4 bg-white rounded-full border text-xl font-semibold flex items-center gap-2'}>Sana bo'yicha saralash <FaAngleDown />
-
-                    </span>
+                    {/*<span className={'py-2 px-4 bg-white rounded-full border text-xl font-semibold flex items-center gap-2'}>Sana bo'yicha saralash <FaAngleDown /></span>*/}
 
                 </div>
 

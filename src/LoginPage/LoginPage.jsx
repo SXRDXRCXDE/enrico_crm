@@ -251,8 +251,8 @@ const LoginPage = () => {
             <div className="flex items-start justify-center min-h-screen bg-[#0a0a0a]">
 
                 <div data-aos="fade-right" data-aos-duration="1500" className={style.imageLayer}>
-                    <img className={`  absolute w-[95%] h-[95%] object-cover rounded-3xl shadow z-0`} src={"https://pbs.twimg.com/media/FplauESakAE17K7.jpg"}/>
-                    <img className={` ${active===0? `opacity-100`: `opacity-0`} duration-500 w-[95%] h-[95%] object-cover rounded-3xl shadow z-10`} src={"https://cdn.prod.website-files.com/5f628b5fcccd6006b3d65ec3/5f82e67571a3e4ad16ffb391_ec%20(10).jpg"}/>
+                    <img className={`  absolute w-[95%] h-[95%] object-cover rounded-3xl shadow z-0`} src={"https://contents.mediadecathlon.com/p2236776/k$84a7d6b85cb3ca8b4567a654fcb31a01/men-s-golf-short-sleeved-polo-shirt-ww500-navy-blue-inesis-8667217.jpg"}/>
+                    <img className={` ${active===0? `opacity-100`: `opacity-0`} duration-500 w-[95%] h-[95%] object-cover rounded-3xl shadow z-10`} src={"https://contents.mediadecathlon.com/p2241668/k$b23fb673a6add6b930f44d1a11575f35/men-s-golf-short-sleeve-polo-shirt-ww500-sky-blue-inesis-8667220.jpg?f=1920x0&format=auto"}/>
                 </div>
 
                 <div className={'w-full flex flex-col mt-24 pr-8'}>

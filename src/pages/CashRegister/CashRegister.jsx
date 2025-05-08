@@ -16,7 +16,8 @@ import CheckProducts from "../ProductSetting/CheckProducts";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setPaymentActive } from "../../store/reducers/paymentSlice"; // adjust path if needed
+import { setPaymentActive } from "../../store/reducers/paymentSlice";
+import {getProducts} from "../../api/products"; // adjust path if needed
 
 
 
@@ -36,6 +37,10 @@ export default function CashRegister() {
 
     const [categoriesData,setCategoriesData] = useState([]);
     const [productsData,setProductsData] = useState([]);
+    const [products,setProducts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [isFetching, setIsFetching] = useState(false);
 
 
 
@@ -48,6 +53,49 @@ export default function CashRegister() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        fetchProducts(1);
+    }, []);
+
+
+
+    const fetchProducts = async (pageNum = 1) => {
+        setIsFetching(true);
+        try {
+            const res = await getProducts(pageNum, 10); // assuming 10 per page
+            const newProducts = res.data?.items || [];
+
+            setProducts((prev) => pageNum === 1 ? newProducts : [...prev, ...newProducts]);
+            setHasMore(newProducts.length === 10); // if less than 10, no more data
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsFetching(false);
+        }
+    };
+
+
+    useEffect(() => {
+        const container = document.getElementById("product-scroll-box");
+        if (!container) return;
+
+        const handleScroll = () => {
+            const { scrollTop, scrollHeight, clientHeight } = container;
+
+            if (!isFetching && hasMore && scrollHeight - scrollTop <= clientHeight + 50) {
+                const nextPage = page + 1;
+                setPage(nextPage);
+                fetchProducts(nextPage);
+            }
+        };
+
+        container.addEventListener("scroll", handleScroll);
+        return () => container.removeEventListener("scroll", handleScroll);
+    }, [isFetching, hasMore, page]);
+
+
 
 
     useEffect(() => {
@@ -179,35 +227,47 @@ export default function CashRegister() {
     }, [productsData]);
 
 
+
+
     const showDiscountModal = () => {
         setTempDiscount(discount); // Set initial value
         setDiscountModalOpen(true);
-    };
-
-    const handleDiscountOk = () => {
-        setDiscount(tempDiscount);
-        setDiscountModalOpen(false);
     };
 
     const handleDiscountCancel = () => {
         setDiscountModalOpen(false);
     };
 
-    const showFeeModal = () => {
-        setTempFee(fee); // Set initial value
-        setFeeModalOpen(true);
+    const handleDiscountOk = () => {
+        if (tempDiscount >= 0) { // You can add further validation if needed
+            setDiscount(tempDiscount);
+        }
+        setDiscountModalOpen(false);
     };
 
-    const handleFeeOk = () => {
-        setFee(tempFee);
-        setFeeModalOpen(false);
-    };
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Enter") {
+                handleDiscountOk(); // Trigger the same action as pressing OK
+            }
+        };
 
-    const handleFeeCancel = () => {
-        setFeeModalOpen(false);
-    };
+        if (isDiscountModalOpen) {
+            window.addEventListener("keydown", handleKeyDown);
+        }
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [isDiscountModalOpen, tempDiscount]);
+
 
     const finalTotal = totalPrice > 0 ? (totalPrice - discount + fee) : 0;
+
+
+    const goToPayments = () => {
+        navigate('/payments', { state: { finalTotal: finalTotal } });
+    };
 
 
     return(
@@ -264,9 +324,14 @@ export default function CashRegister() {
 
 
                     <div className={'w-full h-full overflow-hidden'}>
-                        <div className={'w-full h-full flex flex-wrap content-start overflow-y-scroll gap-3 p-3  bg-white'}>
+                        <div id="product-scroll-box" className="w-full h-full flex flex-wrap content-start overflow-y-scroll gap-3 p-3 bg-white">
 
-                            {Products.map((value, index)=> <ProductCard id={value.id} name={value.name} price={value.price} quantity={value.quantity}/>)}
+
+                            {products?.map((value, index) => (
+                                <ProductCard key={value.id} id={value.id} name={value.name} price={value.price} quantity={value.quantity} />
+                            ))}
+                            {isFetching && <div className="text-center w-full py-4">Loading...</div>}
+
 
                         </div>
                     </div>
@@ -386,29 +451,6 @@ export default function CashRegister() {
                                             <div onClick={showDiscountModal} className={'h-10 border-2 border-black text-center font-semibold flex items-center px-3 rounded-xl cursor-pointer'}>
                                                 - Discount
                                             </div>
-                                            <div onClick={showFeeModal} className={'h-10 border-2 border-black text-center font-semibold flex items-center px-3 rounded-xl cursor-pointer'}>
-                                                + Fee
-                                            </div>
-
-
-
-                                            <Modal
-                                                title="Enter Fee"
-                                                open={isFeeModalOpen}
-                                                onOk={handleFeeOk}
-                                                onCancel={handleFeeCancel}
-                                                okText="Apply"
-                                                cancelText="Cancel"
-                                            >
-                                                <InputNumber
-                                                    min={0}
-                                                    value={tempFee}
-                                                    onChange={value => setTempFee(value)}
-                                                    className="w-full"
-                                                    addonAfter="sum"
-                                                />
-                                            </Modal>
-
 
                                             <Modal
                                                 title="Enter Discount"
@@ -445,7 +487,7 @@ export default function CashRegister() {
                                     onClick={() => {
                                         if (finalTotal >= 1) {
                                             dispatch(setPaymentActive(true));
-                                            navigate("/payments");
+                                            goToPayments();
                                         }
                                     }}
                                 >

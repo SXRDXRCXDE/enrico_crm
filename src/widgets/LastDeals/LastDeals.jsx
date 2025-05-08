@@ -28,6 +28,7 @@ export default function LastDeals() {
             setOrders(orders.data);
             setCustomers(customers.data);
             setUsers(users.data);
+            console.log(orders.data)
         }catch (error){
             console.log(error)
         }finally {
@@ -36,7 +37,7 @@ export default function LastDeals() {
     };
 
 
-    console.log(orders)
+
 
     return<>
         <div className={style.container}>
@@ -52,17 +53,17 @@ export default function LastDeals() {
 
             <div className={style.checkWrapper}>
 
-                {/*{orders.map((value, index)=> <Check*/}
-                {/*    name={users[value.user_id]?.username}*/}
-                {/*    username={customers[value.customer_id]?.name}*/}
-                {/*    address={value?.status}*/}
-                {/*    total_amount={value?.total_amount}*/}
-                {/*    date={value?.created_at}*/}
-                {/*/>)}*/}
+                {orders?.items?.map((value, index)=> <Check
+                    name={users[value.user_id]?.username}
+                    username={customers[value.customer_id]?.name}
+                    address={value?.status}
+                    total_amount={value?.total_amount}
+                    date={value?.created_at}
+                />)}
 
             </div>
 
-            <div className={style.seeAll}>Barcha sotib oluvchilarni ko‘rsatish...</div>
+            {/*<div className={style.seeAll}>Barcha sotib oluvchilarni ko‘rsatish...</div>*/}
 
 
 

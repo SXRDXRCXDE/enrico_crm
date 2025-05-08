@@ -189,9 +189,7 @@ export default function Tasks() {
 
                 <div className={style.topOfTable}>
                     <span className={"text-xl font-semibold"}>Umumiy : {tasksQuantity} topshiriq</span>
-                    <span className={"py-2 px-4 bg-white rounded-full border text-xl font-semibold flex items-center gap-2"}>
-            Sana bo'yicha saralash <FaAngleDown />
-          </span>
+                    {/*<span className={"py-2 px-4 bg-white rounded-full border text-xl font-semibold flex items-center gap-2"}>Sana bo'yicha saralash <FaAngleDown /></span>*/}
                 </div>
 
                 <div className={style.tableWrapper}>

@@ -15,13 +15,13 @@ export default function Statement({date,type,name}) {
 
             <div>
                 <div className={style.type}>
-                    {type}
+                    {name}
                 </div>
             </div>
 
             <div>
                 <div className={style.name}>
-                    {name}
+                    {type}
                 </div>
             </div>
 

@@ -589,6 +589,7 @@ export default function ProductSetting() {
                             name={field.name}
                             placeholder={field.placeholder}
                             onChange={handleChange}
+                            value={formData[field.name]}
                         />
                     ) : (
                         <Input.TextArea
@@ -596,6 +597,7 @@ export default function ProductSetting() {
                             name={field.name}
                             placeholder={field.placeholder}
                             onChange={handleChange}
+                            value={formData[field.name]}
                         />
                     )}
                 </div>
@@ -754,7 +756,7 @@ export default function ProductSetting() {
                             className={'custom-table'}
                             columns={getColumns()}
                             dataSource={getAllData()}
-                            sticky scroll={{y:570}}
+                            sticky scroll={{y:530}}
                             pagination={{
                                 current: currentPage,
                                 pageSize: 10,       // Number of items per page
