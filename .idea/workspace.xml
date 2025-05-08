@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70ce1a9c-b327-4aaa-90d6-652a3f95a357" name="Changes" comment="last" />
+    <list default="true" id="70ce1a9c-b327-4aaa-90d6-652a3f95a357" name="Changes" comment="last">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/WareHouseForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WareHouseForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProductParametrs/ProductParametrs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProductParametrs/ProductParametrs.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +90,7 @@
       <workItem from="1745564699887" duration="1384000" />
       <workItem from="1746607034732" duration="13939000" />
       <workItem from="1746630903801" duration="6853000" />
-      <workItem from="1746681601696" duration="19685000" />
+      <workItem from="1746681601696" duration="24083000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1743692186756</created>
@@ -137,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1746703328338</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="last">
+      <created>1746703726481</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746703726481</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

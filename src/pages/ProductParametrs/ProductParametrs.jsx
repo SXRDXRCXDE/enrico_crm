@@ -14,6 +14,8 @@ import {useLocation} from "react-router-dom";
 import WareHouseForm from "../../components/WareHouseForm";
 import {getSeasons} from "../../api/seasons";
 import {getSizes} from "../../api/sizes";
+import {getProducts} from "../../api/products";
+import {getColors} from "../../api/colors";
 
 
 
@@ -28,8 +30,6 @@ export default function ProductParametrs() {
 
     const [selectedProduct,setSelectedProduct] = useState(null);
 
-    const [confirmedProductResponse,setConfirmedProduct] = useState([]);
-
     const [firstForm, setFirst] = useState(false);
     const [secondForm, setSecond] = useState(false);
     const [parentHeight, setParentHeight] = useState(0);
@@ -39,6 +39,8 @@ export default function ProductParametrs() {
     const [materials,setMaterials] = useState([]);
     const [seasons,setSeasons] = useState([]);
     const [sizes,setSizes] = useState([]);
+    const [products,setProductsData] = useState([]);
+    const [colors,setColors] = useState([]);
 
     const parentRef = useRef(null); // ✅ define the ref
     const headerRef = useRef(null); // ✅ define the ref
@@ -77,11 +79,15 @@ export default function ProductParametrs() {
             const materialsData = await getMaterials(1,100);
             const seasonsData = await getSeasons(1,100);
             const sizesData = await getSizes(1,100);
+            const productsData = await getProducts(1,1000);
+            const colorsData = await getColors(1,1000);
             setCategories(categoryData.data.items);
             setBrands(brandsData.data.items);
             setMaterials(materialsData.data.items);
             setSeasons(seasonsData.data.items);
             setSizes(sizesData.data.items);
+            setProductsData(productsData.data.items);
+            setColors(colorsData.data.items)
         } catch (error) {
             console.log(error);
         }
@@ -93,6 +99,10 @@ export default function ProductParametrs() {
         if (swiperRef.current) {
             swiperRef.current.slideNext();
         }
+    }
+
+    function handleWareHouseSubmit() {
+        console.log('nice')
     }
 
 
@@ -157,6 +167,7 @@ export default function ProductParametrs() {
                                     onSubmit={(success) => {
                                         if (success) {
                                             message.success("Mahsulot muvaffaqiyatli saqlandi");
+                                            fetchParams()
                                             setTimeout(()=>{
                                                 firstSubmit()
                                             },200)
@@ -180,10 +191,11 @@ export default function ProductParametrs() {
 
 
                                 <WareHouseForm
-                                    products={confirmedProductResponse}
+                                    products={products}
                                     seasons={seasons}
                                     sizes={sizes}
-                                    // onSubmit={handleSubmit}
+                                    colors={colors}
+                                    onSubmit={handleWareHouseSubmit}
                                     // initialValues={selectedWarehouseData} // only for edit mode
                                 />
 
