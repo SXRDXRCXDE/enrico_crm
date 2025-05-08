@@ -94,12 +94,22 @@ export default function ProductParametrs() {
     }
 
 
-    function firstSubmit(value) {
-        setFirst(true)
-        if (swiperRef.current) {
-            swiperRef.current.slideNext();
+    const handleProductSubmit = (success, productData) => {
+        if (success) {
+            console.log("Created/updated product:", productData);
+            message.success("Mahsulot saqlandi!");
+            setTimeout(()=>{
+                setFirst(true)
+                if (swiperRef.current) {
+                    swiperRef.current.slideNext();
+                }
+            },400)
+        } else {
+            message.error("Xatolik yuz berdi.");
         }
-    }
+    };
+
+
 
     function handleWareHouseSubmit() {
         console.log('nice')
@@ -150,7 +160,7 @@ export default function ProductParametrs() {
                     className='w-full'
                     lazy={true}
                     preloadImages={false}
-                    allowTouchMove={false}
+                    allowTouchMove={true}
                 >
 
                 <SwiperSlide>
@@ -164,13 +174,11 @@ export default function ProductParametrs() {
                                     materials={materials}
                                     categories={categories}
                                     product={selectedProduct} // ← null for create, object for edit
-                                    onSubmit={(success) => {
+                                    onSubmit={(success,productsData ) => {
                                         if (success) {
                                             message.success("Mahsulot muvaffaqiyatli saqlandi");
                                             fetchParams()
-                                            setTimeout(()=>{
-                                                firstSubmit()
-                                            },200)
+                                            handleProductSubmit(success,productsData)
                                             // Optional: refresh product list, close modal, etc.
                                         } else {
                                             message.error("Mahsulotni saqlashda xatolik yuz berdi");

@@ -27,6 +27,9 @@ export default function WareHouseForm({
     }, [initialValues, form]);
 
     const onFinish = async (values) => {
+
+        console.log(values)
+
         const data = {
             ...values,
             expiration_date: values.expiration_date.toISOString(),
@@ -120,6 +123,7 @@ export default function WareHouseForm({
                         </Form.Item>
 
                         <Form.Item
+                            name={'colors'}
                             label={<span style={formItemStyle}>Ranglar</span>}
                         >
                             <Select

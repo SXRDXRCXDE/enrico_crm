@@ -140,11 +140,11 @@ export default function Inventory() {
             key: "actions",
             render: (_, record) => (
                 <>
-                    <Button
-                        onClick={() => handleEdit(record)}
-                        icon={<EditOutlined />}
-                        style={{ marginRight: 8, fontSize: 33, padding: `30px` }}
-                    />
+                    {/*<Button*/}
+                    {/*    onClick={() => handleEdit(record)}*/}
+                    {/*    icon={<EditOutlined />}*/}
+                    {/*    style={{ marginRight: 8, fontSize: 33, padding: `30px` }}*/}
+                    {/*/>*/}
                     <Button
                         onClick={() => handleDelete(record.id)}
                         icon={<DeleteOutlined />}
