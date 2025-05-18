@@ -55,15 +55,21 @@ export const searchProducts = async (query, page = 1, limit = 10) => {
     }
 };
 
-export const createProduct = async (productData) => {
+export const createProduct = async (data) => {
     try {
-        const response = await axios.post("/api/v1/products/", productData);
-        return response.data;
+        const response = await axios.post('/api/v1/products/', data);
+
+        // Return the full response object, including the status code
+        if (response.status === 200 || response.status === 201) {
+            console.log('Product created:', response.data);
+            return response;  // Return the entire response object
+        }
     } catch (error) {
-        console.error("Error creating product:", error);
-        throw error;
+        console.error('Error creating product:', error);
+        throw error;  // Throw the error so it can be caught in the form
     }
 };
+
 
 export const updateProduct = async (id, productData) => {
     try {

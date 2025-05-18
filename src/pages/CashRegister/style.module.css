@@ -19,7 +19,7 @@
 }
 
 .searchBar {
-    @apply w-full h-16 rounded-full flex items-center justify-between p-1 bg-[#514EF3]  ;
+    @apply w-full h-[54px] rounded-full flex items-center justify-between p-1 bg-[#514EF3]  ;
 }
 
 .profileBar {
@@ -39,15 +39,15 @@
 }
 
 .selectBar{
-    @apply w-[130px] h-full  flex items-center rounded-full overflow-hidden relative ;
+    @apply w-[110px] mr-2 h-full  flex items-center rounded-[15px] overflow-hidden relative ;
 }
 
 .SbarActive {
-    @apply w-1/2 h-full flex items-center justify-center text-5xl text-[#514EF3] z-10 duration-500 ;
+    @apply w-1/2 h-full flex items-center justify-center text-3xl text-[#514EF3] z-10 duration-500 ;
 }
 
 .Sbar {
-    @apply w-1/2 h-full flex items-center justify-center text-5xl text-white z-10 duration-500 ;
+    @apply w-1/2 h-full flex items-center justify-center text-3xl text-white z-10 duration-500 ;
 }
 
 .categoriesBarWrapper {
@@ -55,7 +55,7 @@
 }
 
 .categoriesBar {
-    @apply w-full h-20 flex items-center p-2 gap-x-2 whitespace-nowrap;
+    @apply w-full h-16 flex items-center p-2 gap-x-2 whitespace-nowrap;
 }
 
 .tabNavbarWrapper {

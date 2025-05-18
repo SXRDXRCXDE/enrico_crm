@@ -12,6 +12,17 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s !important;
 }
 
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 4.5s linear infinite;
+}
+
+
+
 
 .App {
   font-family: Inter;

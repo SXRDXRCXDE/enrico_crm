@@ -4,38 +4,32 @@ import {Input} from "antd";
 import { Modal, InputNumber } from "antd";
 import {MdCancel} from "react-icons/md";
 import {IoIosBarcode} from "react-icons/io";
-import {TbAbc} from "react-icons/tb";
 import ProductCard from "./ProductCard";
-import SelectedProduct from "./selectedProduct";
 import {CiSearch} from "react-icons/ci";
-import SearchedProducts from "./searchedProducts";
-import {FaPlus} from "react-icons/fa";
-import {setLoading} from "../../store/reducers/loadingSlice";
-import {getCustomers} from "../../api/customers";
 import CheckProducts from "../ProductSetting/CheckProducts";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPaymentActive } from "../../store/reducers/paymentSlice";
-import {getProducts} from "../../api/products"; // adjust path if needed
+import {getProducts} from "../../api/products";
+import useMessage from "antd/es/message/useMessage"; // adjust path if needed
 
 
 
 export default function CashRegister() {
+
+    const [message,context] = useMessage();
 
     const [totalPrice, setTotalPrice] = useState(0);
     const [discount, setDiscount] = useState(0);
     const [fee, setFee] = useState(0);
 
     const [isDiscountModalOpen, setDiscountModalOpen] = useState(false);
-    const [isFeeModalOpen, setFeeModalOpen] = useState(false);
 
     const [tempDiscount, setTempDiscount] = useState(0);
-    const [tempFee, setTempFee] = useState(0);
 
 
 
-    const [categoriesData,setCategoriesData] = useState([]);
     const [productsData,setProductsData] = useState([]);
     const [products,setProducts] = useState([]);
     const [page, setPage] = useState(1);
@@ -64,7 +58,7 @@ export default function CashRegister() {
     const fetchProducts = async (pageNum = 1) => {
         setIsFetching(true);
         try {
-            const res = await getProducts(pageNum, 10); // assuming 10 per page
+            const res = await getProducts(pageNum, 12); // assuming 10 per page
             const newProducts = res.data?.items || [];
 
             setProducts((prev) => pageNum === 1 ? newProducts : [...prev, ...newProducts]);
@@ -130,69 +124,6 @@ export default function CashRegister() {
         'Shirts',
     ]
 
-    const Products = [
-        {
-            id: '1',
-            name: 'Nike',
-            price: '400',
-        },
-        {
-            id: '2',
-            name: 'Nike',
-            price: '400',
-        },
-        {
-            id: '3',
-            name: 'Nike',
-            price: '400',
-        },
-        {
-            id: '4',
-            name: 'Nike',
-            price: '400',
-        },
-        {
-            id: '5',
-            name: 'Nike',
-            price: '400',
-        },
-        {
-            id: '6',
-            name: 'Nike',
-            price: '400',
-        },
-        {
-            id: '7',
-            name: 'Adidas',
-            price: '350',
-        },
-        {
-            id: '8',
-            name: 'W&F',
-            price: '270',
-        },
-        {
-            id: '9',
-            name: 'Acer',
-            price: '660',
-        },
-        {
-            id: '10',
-            name: 'Puma',
-            price: '550',
-        },
-        {
-            id: '11',
-            name: 'Pepsi',
-            price: '440',
-        },
-        {
-            id: '12',
-            name: 'Click',
-            price: '890',
-        },
-    ]
-
 
     const loadProducts = () => {
         const stored = JSON.parse(localStorage.getItem("selectedProducts") || "[]");
@@ -222,7 +153,6 @@ export default function CashRegister() {
 
         if (sum === 0) {
             setDiscount(0);
-            setFee(0);
         }
     }, [productsData]);
 
@@ -262,12 +192,14 @@ export default function CashRegister() {
     }, [isDiscountModalOpen, tempDiscount]);
 
 
-    const finalTotal = totalPrice > 0 ? (totalPrice - discount + fee) : 0;
+    const finalTotal = totalPrice > 0 ? (totalPrice - discount ) : 0;
 
 
     const goToPayments = () => {
         navigate('/payments', { state: { finalTotal: finalTotal } });
     };
+
+    console.log(products)
 
 
     return(
@@ -388,7 +320,7 @@ export default function CashRegister() {
                                     </div>
                                 </div>
                                 <div className={style.selectBar}>
-                                    <div style={{transform:`translateX(${searchType+`00%`})`}} className={`w-1/2 h-full rounded-full bg-white absolute left-0 duration-500`}></div>
+                                    <div style={{transform:`translateX(${searchType+`00%`})`}} className={`w-1/2 h-[85%] rounded-[25px] bg-white absolute left-0 duration-500`}></div>
                                     <div onClick={()=>setType(0)} className={searchType===0? style.SbarActive : style.Sbar}><IoIosBarcode /></div>
                                     <div onClick={()=>setType(1)} className={searchType===1? style.SbarActive : style.Sbar}><CiSearch /></div>
                                 </div>
@@ -428,11 +360,6 @@ export default function CashRegister() {
                                                 <span className={'text-xl font-semibold'}>Discount</span>
                                                 <div className={'w-full border'}></div>
                                                 <span className={'whitespace-nowrap font-semibold'}>{discount.toLocaleString()} sum</span>
-                                            </div>
-                                            <div className={'w-full flex items-end gap-2'}>
-                                                <span className={'text-xl font-semibold'}>Fee</span>
-                                                <div className={'w-full border'}></div>
-                                                <span className={'whitespace-nowrap font-semibold'}>{fee.toLocaleString()} sum</span>
                                             </div>
 
                                             <div className={'w-full flex items-end gap-2'}>
@@ -488,6 +415,9 @@ export default function CashRegister() {
                                         if (finalTotal >= 1) {
                                             dispatch(setPaymentActive(true));
                                             goToPayments();
+                                        } else {
+                                            goToPayments()
+                                            message.info(`Mahsulot tanlang`)
                                         }
                                     }}
                                 >

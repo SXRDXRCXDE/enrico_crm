@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { Form, InputNumber, Select, DatePicker, Button, Row, Col } from "antd";
-import dayjs from "dayjs";
-import { createInventory, updateInventory } from "../api/inventory";
+import { createInventory } from "../api/inventory";
 
 export default function WareHouseForm({
-                                          products,
                                           seasons,
                                           sizes,
                                           colors,
@@ -19,34 +17,28 @@ export default function WareHouseForm({
     useEffect(() => {
         if (initialValues) {
             form.setFieldsValue({
-                ...initialValues,
-                expiration_date: dayjs(initialValues.expiration_date),
+                product_id: initialValues.id,
             });
-            setSelectedColors(initialValues.colors || []);
         }
     }, [initialValues, form]);
 
     const onFinish = async (values) => {
-
-        console.log(values)
-
         const data = {
             ...values,
-            expiration_date: values.expiration_date.toISOString(),
+            expiration_date: values.expiration_date
+                ? values.expiration_date.toISOString()
+                : null,
             colors: selectedColors,
         };
 
         try {
-            if (initialValues?.id) {
-                await updateInventory(initialValues.id, data);
-            } else {
-                await createInventory(data);
-            }
-            onSubmit();
+            const res = await createInventory(data);
+            onSubmit(res);
         } catch (err) {
             console.error("Inventory submit error:", err);
         }
     };
+
 
     return (
         <div className="w-full px-16 py-20">
@@ -57,15 +49,12 @@ export default function WareHouseForm({
                             name="product_id"
                             label={<span style={formItemStyle}>Mahsulot</span>}
                             rules={[{ required: true }]}
+                            initialValue={initialValues?.id}
                         >
-                            <Select
-                                placeholder={<span style={formItemStyle}>Mahsulotni tanlang</span>}
-                            >
-                                {products.map((p) => (
-                                    <Select.Option key={p.id} value={p.id}>
-                                        <span style={formItemStyle}>{p.name}</span>
-                                    </Select.Option>
-                                ))}
+                            <Select placeholder={<span style={formItemStyle}>Mahsulotni tanlang</span>} disabled>
+                                <Select.Option value={initialValues?.id}>
+                                    <span style={formItemStyle}>{initialValues?.name}</span>
+                                </Select.Option>
                             </Select>
                         </Form.Item>
 
@@ -114,13 +103,13 @@ export default function WareHouseForm({
                         <Form.Item
                             name="expiration_date"
                             label={<span style={formItemStyle}>Amal qilish muddati</span>}
-                            rules={[{ required: true }]}
                         >
                             <DatePicker
                                 style={{ width: "100%", fontSize: 18 }}
                                 showTime
                             />
                         </Form.Item>
+
 
                         <Form.Item
                             name={'colors'}
@@ -161,9 +150,9 @@ export default function WareHouseForm({
                             <Button
                                 type="primary"
                                 htmlType="submit"
-                                style={{ width: "100%", fontSize: 18 , marginTop:`50px`}}
+                                style={{ width: "100%", fontSize: 18, marginTop: `50px` }}
                             >
-                                {initialValues ? "Yangilash" : "Saqlash"}
+                                Saqlash
                             </Button>
                         </Form.Item>
                     </Col>
